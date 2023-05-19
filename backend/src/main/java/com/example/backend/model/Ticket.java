@@ -25,10 +25,7 @@ public class Ticket {
     @JsonBackReference()
     private Reservation reservation;
 
-
-    @PreUpdate
-    @PrePersist
-    private void updatePrice() {
+    public void setAutomaticPrice() {
         switch (ticketType) {
             case ADULT -> price = 25.0;
             case CHILD -> price = 18.0;

@@ -22,6 +22,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public Reservation addReservation(Reservation reservation) {
         for (Ticket ticket : reservation.getTickets()) {
+            ticket.setAutomaticPrice();
             ticket.setReservation(reservation);
         }
 

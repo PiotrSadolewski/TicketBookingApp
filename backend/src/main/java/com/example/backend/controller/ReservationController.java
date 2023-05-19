@@ -2,6 +2,7 @@ package com.example.backend.controller;
 
 import com.example.backend.model.Reservation;
 import com.example.backend.service.ReservationService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +20,7 @@ public class ReservationController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Reservation> addReservation(@RequestBody Reservation reservation) {
+    public ResponseEntity<Reservation> addReservation(@Valid @RequestBody Reservation reservation) {
         return ResponseEntity.ok(reservationService.addReservation(reservation));
     }
 }
