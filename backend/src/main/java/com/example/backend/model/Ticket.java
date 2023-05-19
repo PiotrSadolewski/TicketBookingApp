@@ -1,5 +1,6 @@
 package com.example.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +19,12 @@ public class Ticket {
     private TicketType ticketType;
 
     private double price;
+
+    @ManyToOne()
+    @JoinColumn(name = "reservation_id")
+    @JsonBackReference()
+    private Reservation reservation;
+
 
     @PreUpdate
     @PrePersist
