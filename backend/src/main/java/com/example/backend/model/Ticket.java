@@ -25,6 +25,14 @@ public class Ticket {
     @JsonBackReference()
     private Reservation reservation;
 
+    @OneToOne
+    @JoinColumn(name = "seat_id")
+    private Seat seat;
+
+    @OneToOne
+    @JoinColumn(name = "show_id")
+    private Show show;
+
     public void setAutomaticPrice() {
         switch (ticketType) {
             case ADULT -> price = 25.0;
