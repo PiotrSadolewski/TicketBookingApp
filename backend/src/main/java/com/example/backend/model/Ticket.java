@@ -3,6 +3,7 @@ package com.example.backend.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,17 +35,11 @@ public class Ticket {
     @JoinColumn(name = "show_id")
     private Show show;
 
-    public void setAutomaticPrice() {
-        switch (ticketType) {
-            case ADULT -> price = 25.0;
-            case CHILD -> price = 18.0;
-            case STUDENT -> price = 12.50;
-            default -> throw new IllegalArgumentException("Invalid ticket type");
-        }
-
+     public enum TicketType {
+        ADULT,
+        CHILD,
+        STUDENT
     }
+
 }
 
-enum TicketType {
-    ADULT, CHILD, STUDENT
-}

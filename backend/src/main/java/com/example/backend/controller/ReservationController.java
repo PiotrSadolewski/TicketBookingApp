@@ -1,13 +1,13 @@
 package com.example.backend.controller;
 
+import com.example.backend.model.requests.ReservationRequest;
 import com.example.backend.model.Reservation;
 import com.example.backend.service.ReservationService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/reservations")
@@ -20,7 +20,12 @@ public class ReservationController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Reservation> addReservation(@Valid @RequestBody Reservation reservation) {
-        return ResponseEntity.ok(reservationService.addReservation(reservation));
+    public ResponseEntity<Reservation> addReservation(@Valid @RequestBody ReservationRequest reservationRequest) {
+        return ResponseEntity.ok(reservationService.addReservation(reservationRequest));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Reservation>> getAllReservations() {
+        return ResponseEntity.ok(reservationService.getAllReservations());
     }
 }
