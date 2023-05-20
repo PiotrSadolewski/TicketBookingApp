@@ -4,7 +4,6 @@ import com.example.backend.model.CinemaHall;
 import com.example.backend.repository.CinemaHallRepository;
 import com.example.backend.service.CinemaHallService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +20,6 @@ public class CinemaHallServiceImpl implements CinemaHallService {
 
     @Override
     public CinemaHall addCinemaHall(CinemaHall cinemaHall) {
-        // TODO: jak dodaje cinema hall w pętli tworzę ustaloną liczbę miejsc nadając im kolejne numery
         return cinemaHallRepository.save(cinemaHall);
     }
 

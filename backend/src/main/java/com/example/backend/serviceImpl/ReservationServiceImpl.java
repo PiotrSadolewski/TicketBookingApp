@@ -25,7 +25,6 @@ public class ReservationServiceImpl implements ReservationService {
             ticket.setAutomaticPrice();
             ticket.setReservation(reservation);
         }
-
         return reservationRepository.save(reservation);
     }
 

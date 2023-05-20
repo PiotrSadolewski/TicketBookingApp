@@ -38,4 +38,5 @@ public class Reservation {
     private void updatePrice() {
         totalPrice = tickets.stream().mapToDouble(Ticket::getPrice).sum();
     }
+
 }
