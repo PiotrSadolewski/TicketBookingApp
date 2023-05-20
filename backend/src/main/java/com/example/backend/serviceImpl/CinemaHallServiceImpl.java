@@ -10,10 +10,9 @@ import java.util.List;
 
 @Service
 public class CinemaHallServiceImpl implements CinemaHallService {
-
-    @Autowired
     private final CinemaHallRepository cinemaHallRepository;
 
+    @Autowired
     public CinemaHallServiceImpl(CinemaHallRepository cinemaHallRepository) {
         this.cinemaHallRepository = cinemaHallRepository;
     }

@@ -29,11 +29,11 @@ public class CinemaHall {
     @PrePersist
     public void addSeats(){
         IntStream.rangeClosed(1, rowQuantity)
-                .forEach(i -> IntStream.rangeClosed(1, seatsPerRow)
-                        .forEach(j -> {
+                .forEach(rowNumber -> IntStream.rangeClosed(1, seatsPerRow)
+                        .forEach(seatNumber -> {
                             Seat seat = new Seat();
-                            seat.setRowNumber(i);
-                            seat.setSeatNumber(j);
+                            seat.setRowNumber(rowNumber);
+                            seat.setSeatNumber(seatNumber);
                             seat.setCinemaHall(this);
                             seats.add(seat);
                         }));
