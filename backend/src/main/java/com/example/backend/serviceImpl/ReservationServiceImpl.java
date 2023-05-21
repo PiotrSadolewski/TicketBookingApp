@@ -1,10 +1,7 @@
 package com.example.backend.serviceImpl;
 
-import com.example.backend.model.TicketType;
+import com.example.backend.model.*;
 import com.example.backend.model.requests.*;
-import com.example.backend.model.Reservation;
-import com.example.backend.model.Seat;
-import com.example.backend.model.Ticket;
 import com.example.backend.model.response.ReservationResponse;
 import com.example.backend.repository.ReservationRepository;
 import com.example.backend.repository.SeatRepository;
@@ -16,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -33,19 +31,30 @@ public class ReservationServiceImpl implements ReservationService {
                 .surname(reservationRequest.getSurname())
                 .build();
 
+        Show show = showRepository.findById(reservationRequest.getShowId()).orElseThrow(() -> new RuntimeException("Show not found"));
+
         // Creates tickets objects and checks if seats are available
         List<Ticket> tickets = reservationRequest.getTickets().stream().map(ticketRequest -> {
             Seat seat = seatRepository.findById(ticketRequest.getSeatId()).orElseThrow(() -> new RuntimeException("Seat not found"));
+
             if (seat.getIsReserved()) {
                 throw new RuntimeException(
                         "Seat with row number: " + seat.getRowNumber() + " seat number: " + seat.getSeatNumber() + " is already reserved"
                 );
             }
+
+            if (!Objects.equals(seat.getCinemaHall().getId(), show.getCinemaHall().getId())){
+                throw new RuntimeException(
+                        "Chosen seat is in wrong cinema hall"
+                );
+
+            }
+
             seat.setIsReserved(true);
             return Ticket.builder()
                     .ticketType(ticketRequest.getTicketType())
                     .seat(seat)
-                    .show(showRepository.findById(reservationRequest.getShowId()).orElseThrow(() -> new RuntimeException("Show not found")))
+                    .show(show)
                     .price(setAutomaticPrice(ticketRequest.getTicketType()))
                     .reservation(reservation)
                     .build();
