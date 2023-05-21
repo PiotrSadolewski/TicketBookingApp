@@ -3,6 +3,7 @@ package com.example.backend.serviceImpl;
 import com.example.backend.model.Show;
 import com.example.backend.repository.ShowRepository;
 import com.example.backend.service.ShowService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +13,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ShowServiceImpl implements ShowService {
 
     private final ShowRepository showRepository;
-
-    @Autowired
-    public ShowServiceImpl(ShowRepository showRepository) {
-        this.showRepository = showRepository;
-    }
 
     @Override
     public Show addShow(Show show) {

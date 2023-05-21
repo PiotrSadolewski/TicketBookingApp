@@ -4,6 +4,7 @@ import com.example.backend.model.CinemaHall;
 import com.example.backend.model.Seat;
 import com.example.backend.repository.CinemaHallRepository;
 import com.example.backend.service.CinemaHallService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,13 +12,9 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 @Service
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class CinemaHallServiceImpl implements CinemaHallService {
     private final CinemaHallRepository cinemaHallRepository;
-
-    @Autowired
-    public CinemaHallServiceImpl(CinemaHallRepository cinemaHallRepository) {
-        this.cinemaHallRepository = cinemaHallRepository;
-    }
 
     @Override
     public CinemaHall addCinemaHall(CinemaHall cinemaHall) {
