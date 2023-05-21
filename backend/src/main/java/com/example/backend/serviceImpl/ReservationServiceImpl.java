@@ -13,6 +13,8 @@ import com.example.backend.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -24,27 +26,35 @@ public class ReservationServiceImpl implements ReservationService {
     private final ShowRepository showRepository;
     @Override
     public ReservationResponse addReservation(ReservationRequest reservationRequest) {
-        // Create function to check if seat is reserved
 
-
-        // Gets information about seats and show from database and creates a list of tickets
-        List<Ticket> tickets = reservationRequest.getTickets().stream().map(ticketRequest -> Ticket.builder()
-                .ticketType(ticketRequest.getTicketType())
-                .seat(seatRepository.findById(ticketRequest.getSeatId()).orElseThrow(() -> new RuntimeException("Seat not found")))
-                .show(showRepository.findById(reservationRequest.getShowId()).orElseThrow(() -> new RuntimeException("Show not found")))
-                .price(setAutomaticPrice(ticketRequest.getTicketType()))
-                .build()).toList();
-
-        // Sets seats as reserved
-        setSeatsAsReserved(tickets.stream().map(Ticket::getSeat).toList());
-
-        // Creates a reservation
+        // Creates reservation object
         Reservation reservation = Reservation.builder()
                 .name(reservationRequest.getName())
                 .surname(reservationRequest.getSurname())
-                .tickets(tickets)
-                .totalPrice(tickets.stream().mapToDouble(Ticket::getPrice).sum())
                 .build();
+
+        // Creates tickets objects and checks if seats are available
+        List<Ticket> tickets = reservationRequest.getTickets().stream().map(ticketRequest -> {
+            Seat seat = seatRepository.findById(ticketRequest.getSeatId()).orElseThrow(() -> new RuntimeException("Seat not found"));
+            if (seat.getIsReserved()) {
+                throw new RuntimeException(
+                        "Seat with row number: " + seat.getRowNumber() + " seat number: " + seat.getSeatNumber() + " is already reserved"
+                );
+            }
+            seat.setIsReserved(true);
+            return Ticket.builder()
+                    .ticketType(ticketRequest.getTicketType())
+                    .seat(seat)
+                    .show(showRepository.findById(reservationRequest.getShowId()).orElseThrow(() -> new RuntimeException("Show not found")))
+                    .price(setAutomaticPrice(ticketRequest.getTicketType()))
+                    .reservation(reservation)
+                    .build();
+        }).toList();
+
+        // Sets tickets and total price to reservation
+        reservation.setTickets(tickets);
+        reservation.setTotalPrice(tickets.stream().reduce(BigDecimal.ZERO, (subtotal, ticket) -> subtotal.add(ticket.getPrice()), BigDecimal::add));
+
 
         // Saves reservation to database
         reservationRepository.save(reservation);
@@ -76,22 +86,16 @@ public class ReservationServiceImpl implements ReservationService {
         return reservationRepository.findById(id).orElseThrow(() -> new RuntimeException("Reservation not found"));
     }
 
-    private void setSeatsAsReserved(List<Seat> seats) {
-        seats.forEach(seat ->
-            seat.setIsReserved(true)
-        );
-    }
-
-    private Double setAutomaticPrice(TicketType ticketType) {
+    private BigDecimal setAutomaticPrice(TicketType ticketType) {
         switch (ticketType) {
             case ADULT -> {
-                return  25.00;
+                return  new BigDecimal("25.00");
             }
             case CHILD -> {
-                return  18.00;
+                return  new BigDecimal("18.00");
             }
             case STUDENT -> {
-                return 12.50;
+                return new BigDecimal("12.50");
             }
             default -> throw new IllegalArgumentException("Invalid ticket type");
         }
