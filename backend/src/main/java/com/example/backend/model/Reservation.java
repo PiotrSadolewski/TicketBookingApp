@@ -35,10 +35,4 @@ public class Reservation {
 
     private double totalPrice;
 
-    @PreUpdate
-    @PrePersist
-    private void updatePrice() {
-        totalPrice = tickets.stream().mapToDouble(Ticket::getPrice).sum();
-    }
-
 }

@@ -35,11 +35,5 @@ public class Ticket {
     @JoinColumn(name = "show_id")
     private Show show;
 
-     public enum TicketType {
-        ADULT,
-        CHILD,
-        STUDENT
-    }
-
 }
 

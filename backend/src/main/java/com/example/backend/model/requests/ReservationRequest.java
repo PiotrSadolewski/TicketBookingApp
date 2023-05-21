@@ -1,5 +1,6 @@
 package com.example.backend.model.requests;
 
+import com.example.backend.model.TicketType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +22,7 @@ public class ReservationRequest {
     @NoArgsConstructor
     @Data
     public static class Ticket {
-        private com.example.backend.model.Ticket.TicketType ticketType;
+        private TicketType ticketType;
         private Long seatId;
         private Long showId;
     }

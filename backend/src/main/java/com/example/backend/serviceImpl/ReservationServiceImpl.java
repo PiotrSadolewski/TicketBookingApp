@@ -1,6 +1,7 @@
 package com.example.backend.serviceImpl;
 
-import com.example.backend.model.requests.ReservationRequest;
+import com.example.backend.model.TicketType;
+import com.example.backend.model.requests.*;
 import com.example.backend.model.Reservation;
 import com.example.backend.model.Seat;
 import com.example.backend.model.Ticket;
@@ -37,6 +38,7 @@ public class ReservationServiceImpl implements ReservationService {
                 .name(reservationRequest.getName())
                 .surname(reservationRequest.getSurname())
                 .tickets(tickets)
+                .totalPrice(tickets.stream().mapToDouble(Ticket::getPrice).sum())
                 .build();
 
         return reservationRepository.save(reservation);
@@ -58,7 +60,7 @@ public class ReservationServiceImpl implements ReservationService {
         );
     }
 
-    private Double setAutomaticPrice(Ticket.TicketType ticketType) {
+    private Double setAutomaticPrice(TicketType ticketType) {
         switch (ticketType) {
             case ADULT -> {
                 return  25.00;

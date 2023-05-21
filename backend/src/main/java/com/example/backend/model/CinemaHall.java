@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 @Data
 @Entity
@@ -24,19 +23,5 @@ public class CinemaHall {
 
     @OneToMany(mappedBy = "cinemaHall", cascade = CascadeType.ALL)
     private List<Seat> seats = new ArrayList<>();
-
-    @PreUpdate
-    @PrePersist
-    public void addSeats(){
-        IntStream.rangeClosed(1, rowQuantity)
-                .forEach(rowNumber -> IntStream.rangeClosed(1, seatsPerRow)
-                        .forEach(seatNumber -> {
-                            Seat seat = new Seat();
-                            seat.setRowNumber(rowNumber);
-                            seat.setSeatNumber(seatNumber);
-                            seat.setCinemaHall(this);
-                            seats.add(seat);
-                        }));
-    }
 
 }
