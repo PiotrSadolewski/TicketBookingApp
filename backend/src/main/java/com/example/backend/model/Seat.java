@@ -18,8 +18,7 @@ public class Seat {
     private Integer rowNumber;
     private Integer seatNumber;
 
-    @Column(columnDefinition="bit default 0")
-    private boolean isReserved;
+    private Boolean isReserved;
 
     @ManyToOne()
     @JoinColumn(name = "cinema_hall_id")

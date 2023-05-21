@@ -1,4 +1,4 @@
-package com.example.backend.model.requests;
+package com.example.backend.model.response;
 
 import com.example.backend.model.TicketType;
 import lombok.AllArgsConstructor;
@@ -6,16 +6,20 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ReservationRequest {
+public class ReservationResponse {
     private String name;
     private String surname;
-    private Long showId;
+    private String movieTitle;
+    private Integer cinemaHallNumber;
+    private LocalDateTime startTime;
+    private Double totalPrice;
     private List<Ticket> tickets;
 
     @Builder
@@ -24,6 +28,9 @@ public class ReservationRequest {
     @Data
     public static class Ticket {
         private TicketType ticketType;
-        private Long seatId;
+        private Integer row;
+        private Integer column;
+        private Double price;
     }
+
 }

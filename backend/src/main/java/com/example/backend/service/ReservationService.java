@@ -2,11 +2,12 @@ package com.example.backend.service;
 
 import com.example.backend.model.requests.ReservationRequest;
 import com.example.backend.model.Reservation;
+import com.example.backend.model.response.ReservationResponse;
 
 import java.util.List;
 
 public interface ReservationService {
-    Reservation addReservation(ReservationRequest reservationRequest);
+    ReservationResponse addReservation(ReservationRequest reservationRequest);
     List<Reservation> getAllReservations();
     Reservation getReservationById(Long id);
 }

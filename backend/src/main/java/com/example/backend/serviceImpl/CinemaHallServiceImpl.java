@@ -43,6 +43,7 @@ public class CinemaHallServiceImpl implements CinemaHallService {
                             seat.setRowNumber(rowNumber);
                             seat.setSeatNumber(seatNumber);
                             seat.setCinemaHall(cinemaHall);
+                            seat.setIsReserved(false);
                             cinemaHall.getSeats().add(seat);
                         }));
     }

@@ -5,6 +5,7 @@ import com.example.backend.model.requests.*;
 import com.example.backend.model.Reservation;
 import com.example.backend.model.Seat;
 import com.example.backend.model.Ticket;
+import com.example.backend.model.response.ReservationResponse;
 import com.example.backend.repository.ReservationRepository;
 import com.example.backend.repository.SeatRepository;
 import com.example.backend.repository.ShowRepository;
@@ -12,7 +13,6 @@ import com.example.backend.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -23,17 +23,22 @@ public class ReservationServiceImpl implements ReservationService {
     private final SeatRepository seatRepository;
     private final ShowRepository showRepository;
     @Override
-    public Reservation addReservation(ReservationRequest reservationRequest) {
+    public ReservationResponse addReservation(ReservationRequest reservationRequest) {
+        // Create function to check if seat is reserved
 
+
+        // Gets information about seats and show from database and creates a list of tickets
         List<Ticket> tickets = reservationRequest.getTickets().stream().map(ticketRequest -> Ticket.builder()
                 .ticketType(ticketRequest.getTicketType())
                 .seat(seatRepository.findById(ticketRequest.getSeatId()).orElseThrow(() -> new RuntimeException("Seat not found")))
-                .show(showRepository.findById(ticketRequest.getShowId()).orElseThrow(() -> new RuntimeException("Show not found")))
+                .show(showRepository.findById(reservationRequest.getShowId()).orElseThrow(() -> new RuntimeException("Show not found")))
                 .price(setAutomaticPrice(ticketRequest.getTicketType()))
                 .build()).toList();
 
+        // Sets seats as reserved
         setSeatsAsReserved(tickets.stream().map(Ticket::getSeat).toList());
 
+        // Creates a reservation
         Reservation reservation = Reservation.builder()
                 .name(reservationRequest.getName())
                 .surname(reservationRequest.getSurname())
@@ -41,7 +46,24 @@ public class ReservationServiceImpl implements ReservationService {
                 .totalPrice(tickets.stream().mapToDouble(Ticket::getPrice).sum())
                 .build();
 
-        return reservationRepository.save(reservation);
+        // Saves reservation to database
+        reservationRepository.save(reservation);
+
+        // Returns reservation response
+        return ReservationResponse.builder()
+                    .name(reservation.getName())
+                    .surname(reservation.getSurname())
+                    .movieTitle(reservation.getTickets().get(0).getShow().getMovie().getTitle())
+                    .cinemaHallNumber(reservation.getTickets().get(0).getShow().getCinemaHall().getHallNumber())
+                    .startTime(reservation.getTickets().get(0).getShow().getStartTime())
+                    .totalPrice(reservation.getTotalPrice())
+                    .tickets(reservation.getTickets().stream().map(ticket -> ReservationResponse.Ticket.builder()
+                            .ticketType(ticket.getTicketType())
+                            .row(ticket.getSeat().getRowNumber())
+                            .column(ticket.getSeat().getSeatNumber())
+                            .price(ticket.getPrice())
+                            .build()).toList())
+                    .build();
     }
 
     @Override
@@ -56,7 +78,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     private void setSeatsAsReserved(List<Seat> seats) {
         seats.forEach(seat ->
-            seat.setReserved(true)
+            seat.setIsReserved(true)
         );
     }
 
