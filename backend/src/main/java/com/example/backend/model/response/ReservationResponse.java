@@ -22,6 +22,7 @@ public class ReservationResponse {
     private LocalDateTime startTime;
     private BigDecimal totalPrice;
     private List<Ticket> tickets;
+    private LocalDateTime expirationTime;
 
     @Builder
     @AllArgsConstructor

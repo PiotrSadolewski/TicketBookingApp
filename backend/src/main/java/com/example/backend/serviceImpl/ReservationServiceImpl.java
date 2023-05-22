@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,13 +27,18 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public ReservationResponse addReservation(ReservationRequest reservationRequest) {
 
+        Show show = showRepository.findById(reservationRequest.getShowId()).orElseThrow(() -> new RuntimeException("Show not found"));
+
+        if (Duration.between(LocalDateTime.now(), show.getStartTime()).toMinutes() < 15){
+               throw new RuntimeException("You can't reserve tickets for show that starts in less than 15 minutes or has already started");
+        }
+
         // Creates reservation object
         Reservation reservation = Reservation.builder()
                 .name(reservationRequest.getName())
                 .surname(reservationRequest.getSurname())
+                .expirationTime(show.getStartTime().minusMinutes(5))
                 .build();
-
-        Show show = showRepository.findById(reservationRequest.getShowId()).orElseThrow(() -> new RuntimeException("Show not found"));
 
         // Creates tickets objects and checks if seats are available
         List<Ticket> tickets = reservationRequest.getTickets().stream().map(ticketRequest -> {
@@ -76,6 +83,7 @@ public class ReservationServiceImpl implements ReservationService {
                     .cinemaHallNumber(reservation.getTickets().get(0).getShow().getCinemaHall().getHallNumber())
                     .startTime(reservation.getTickets().get(0).getShow().getStartTime())
                     .totalPrice(reservation.getTotalPrice())
+                    .expirationTime(reservation.getExpirationTime())
                     .tickets(reservation.getTickets().stream().map(ticket -> ReservationResponse.Ticket.builder()
                             .ticketType(ticket.getTicketType())
                             .row(ticket.getSeat().getRowNumber())
@@ -106,7 +114,7 @@ public class ReservationServiceImpl implements ReservationService {
             case STUDENT -> {
                 return new BigDecimal("12.50");
             }
-            default -> throw new IllegalArgumentException("Invalid ticket type");
+            default -> throw new RuntimeException("Invalid ticket type");
         }
     }
 

@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -36,5 +37,6 @@ public class Reservation {
     private List<Ticket> tickets;
 
     private BigDecimal totalPrice;
+    private LocalDateTime expirationTime;
 
 }

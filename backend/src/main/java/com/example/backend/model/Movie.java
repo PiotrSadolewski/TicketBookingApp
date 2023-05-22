@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Duration;
+
+
 @Data
 @Entity
 @AllArgsConstructor
@@ -18,5 +21,5 @@ public class Movie{
     private String description;
     private String filmDirector;
     private String genre;
-    private String duration;
+    private Duration duration;
 }
