@@ -38,6 +38,7 @@ public class ReservationServiceImpl implements ReservationService {
                 .name(reservationRequest.getName())
                 .surname(reservationRequest.getSurname())
                 .expirationTime(show.getStartTime().minusMinutes(5))
+                .isPaid(false)
                 .build();
 
         // Creates tickets objects and checks if seats are available
@@ -96,6 +97,14 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public List<Reservation> getAllReservations() {
         return reservationRepository.findAll();
+    }
+
+    @Override
+    public Reservation setReservationPaid(Long id) {
+        return reservationRepository.findById(id).map(reservation -> {
+            reservation.setIsPaid(true);
+            return reservationRepository.save(reservation);
+        }).orElseThrow(() -> new RuntimeException("Reservation not found"));
     }
 
     @Override

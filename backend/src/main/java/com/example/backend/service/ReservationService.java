@@ -9,5 +9,7 @@ import java.util.List;
 public interface ReservationService {
     ReservationResponse addReservation(ReservationRequest reservationRequest);
     List<Reservation> getAllReservations();
+
+    Reservation setReservationPaid(Long id);
     Reservation getReservationById(Long id);
 }

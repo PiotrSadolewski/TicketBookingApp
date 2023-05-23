@@ -17,10 +17,4 @@ public interface ShowRepository extends JpaRepository<Show, Long> {
     @Query("SELECT s FROM Show s WHERE DATE(s.startTime) = ?1")
     List<Show> getShowsOnChosenDate(LocalDate date);
 
-
-
-//    @Query("SELECT s FROM Show s WHERE s.startTime = ?1")
-//    List<Show> getShowsOnChosenDate(LocalDateTime date);
-
-
 }

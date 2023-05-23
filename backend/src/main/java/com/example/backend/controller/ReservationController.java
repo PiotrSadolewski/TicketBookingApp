@@ -29,4 +29,9 @@ public class ReservationController {
     public ResponseEntity<List<Reservation>> getAllReservations() {
         return ResponseEntity.ok(reservationService.getAllReservations());
     }
+
+    @PutMapping("/setPaid/{id}")
+    public ResponseEntity<Reservation> setReservationPaid(@PathVariable Long id) {
+        return ResponseEntity.ok(reservationService.setReservationPaid(id));
+    }
 }

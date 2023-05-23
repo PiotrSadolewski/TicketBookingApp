@@ -2,6 +2,7 @@ package com.example.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,21 +21,26 @@ public class Ticket {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @NotNull
     private TicketType ticketType;
 
+    @NotNull
     private BigDecimal price;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "reservation_id")
     @JsonBackReference()
+    @NotNull
     private Reservation reservation;
 
     @OneToOne
     @JoinColumn(name = "seat_id")
+    @NotNull
     private Seat seat;
 
     @OneToOne
     @JoinColumn(name = "show_id")
+    @NotNull
     private Show show;
 
 }
