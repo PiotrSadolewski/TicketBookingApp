@@ -2,21 +2,18 @@ package com.example.backend.controller;
 
 import com.example.backend.model.CinemaHall;
 import com.example.backend.service.CinemaHallService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/cinemaHalls")
 public class CinemaHallController {
 
     public final CinemaHallService cinemaHallService;
-
-    public CinemaHallController(CinemaHallService cinemaHallService) {
-        this.cinemaHallService = cinemaHallService;
-    }
-
     @GetMapping("/all")
     public ResponseEntity<List<CinemaHall>> getAllCinemaHalls() {
         return ResponseEntity.ok(cinemaHallService.getAllCinemaHalls());

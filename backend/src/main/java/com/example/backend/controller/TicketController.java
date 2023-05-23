@@ -2,20 +2,18 @@ package com.example.backend.controller;
 
 import com.example.backend.model.Ticket;
 import com.example.backend.service.TicketService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/tickets")
 public class TicketController {
 
     private final TicketService ticketService;
-
-    public TicketController(TicketService ticketService) {
-        this.ticketService = ticketService;
-    }
 
     @GetMapping("/all")
     public ResponseEntity<List<Ticket>> getAllTickets() {

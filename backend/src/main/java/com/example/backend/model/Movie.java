@@ -1,5 +1,6 @@
 package com.example.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Duration;
+import java.util.List;
 
 
 @Data
@@ -35,4 +37,8 @@ public class Movie{
 
     @NotNull
     private Duration duration;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "movie")
+    private List<Show> shows;
 }

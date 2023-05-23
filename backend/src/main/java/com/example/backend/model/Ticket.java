@@ -37,11 +37,5 @@ public class Ticket {
     @JoinColumn(name = "seat_id")
     @NotNull
     private Seat seat;
-
-    @OneToOne
-    @JoinColumn(name = "show_id")
-    @NotNull
-    private Show show;
-
 }
 

@@ -15,7 +15,6 @@ import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -51,18 +50,10 @@ public class ReservationServiceImpl implements ReservationService {
                 );
             }
 
-            if (!Objects.equals(seat.getCinemaHall().getId(), show.getCinemaHall().getId())){
-                throw new RuntimeException(
-                        "Chosen seat is in wrong cinema hall"
-                );
-
-            }
-
             seat.setIsReserved(true);
             return Ticket.builder()
                     .ticketType(ticketRequest.getTicketType())
                     .seat(seat)
-                    .show(show)
                     .price(setAutomaticPrice(ticketRequest.getTicketType()))
                     .reservation(reservation)
                     .build();
@@ -80,9 +71,9 @@ public class ReservationServiceImpl implements ReservationService {
         return ReservationResponse.builder()
                     .name(reservation.getName())
                     .surname(reservation.getSurname())
-                    .movieTitle(reservation.getTickets().get(0).getShow().getMovie().getTitle())
-                    .cinemaHallNumber(reservation.getTickets().get(0).getShow().getCinemaHall().getHallNumber())
-                    .startTime(reservation.getTickets().get(0).getShow().getStartTime())
+                    .movieTitle(show.getMovie().getTitle())
+                    .cinemaHallNumber(show.getCinemaHall().getHallNumber())
+                    .startTime(show.getStartTime())
                     .totalPrice(reservation.getTotalPrice())
                     .expirationTime(reservation.getExpirationTime())
                     .tickets(reservation.getTickets().stream().map(ticket -> ReservationResponse.Ticket.builder()

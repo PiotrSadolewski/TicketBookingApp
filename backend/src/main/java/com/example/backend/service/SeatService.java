@@ -4,8 +4,12 @@ import com.example.backend.model.Seat;
 
 import java.util.List;
 
-public interface SearService {
+public interface SeatService {
     Seat getSeatById(Long id);
+
     Seat addSeat(Seat seat);
+
     List<Seat> getAllSeats();
+
+    List<Seat> getAvailableSeatsByShowId(Long showId);
 }

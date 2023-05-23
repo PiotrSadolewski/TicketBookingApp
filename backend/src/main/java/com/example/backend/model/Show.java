@@ -1,6 +1,7 @@
 package com.example.backend.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Data
@@ -31,4 +33,9 @@ public class Show {
     @JoinColumn(name = "cinema_hall_id")
     @NotNull
     private CinemaHall cinemaHall;
+
+    @OneToMany(mappedBy = "show", cascade = CascadeType.ALL)
+    @NotEmpty
+    private List<Seat> seats;
+
 }

@@ -1,15 +1,11 @@
 package com.example.backend.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @Entity
@@ -31,9 +27,7 @@ public class CinemaHall {
     @NotNull
     private Integer seatsPerRow;
 
-    @OneToMany(mappedBy = "cinemaHall", cascade = CascadeType.ALL)
-    @NotEmpty
-    private List<Seat> seats = new ArrayList<>();
-
+//    @OneToMany(mappedBy = "cinemaHall", cascade = CascadeType.ALL)
+//    private List<Show> shows;
 
 }
