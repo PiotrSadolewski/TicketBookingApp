@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface SeatRepository extends JpaRepository<Seat, Long> {
-    @Query("SELECT s FROM Seat s WHERE s.show.id = ?1 AND s.isReserved = false ")
-    List<Seat> getAvailableSeatsByShowId(Long showId);
+    @Query("SELECT s FROM Seat s WHERE s.screening.id = ?1 AND s.isReserved = false ")
+    List<Seat> getAvailableSeatsByScreeningId(Long screeningId);
 }

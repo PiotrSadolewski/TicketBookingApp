@@ -18,7 +18,7 @@ public class ReservationResponse {
     private String name;
     private String surname;
     private String movieTitle;
-    private Integer cinemaHallNumber;
+    private Integer screeningRoomNumber;
     private LocalDateTime startTime;
     private BigDecimal totalPrice;
     private List<Ticket> tickets;
@@ -31,7 +31,7 @@ public class ReservationResponse {
     public static class Ticket {
         private TicketType ticketType;
         private Integer row;
-        private Integer column;
+        private Integer seatNumber;
         private BigDecimal price;
     }
 

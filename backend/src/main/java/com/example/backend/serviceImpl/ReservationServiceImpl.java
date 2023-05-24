@@ -5,7 +5,7 @@ import com.example.backend.model.requests.*;
 import com.example.backend.model.response.ReservationResponse;
 import com.example.backend.repository.ReservationRepository;
 import com.example.backend.repository.SeatRepository;
-import com.example.backend.repository.ShowRepository;
+import com.example.backend.repository.ScreeningRepository;
 import com.example.backend.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,21 +22,21 @@ public class ReservationServiceImpl implements ReservationService {
 
     private final ReservationRepository reservationRepository;
     private final SeatRepository seatRepository;
-    private final ShowRepository showRepository;
+    private final ScreeningRepository screeningRepository;
     @Override
     public ReservationResponse addReservation(ReservationRequest reservationRequest) {
 
-        Show show = showRepository.findById(reservationRequest.getShowId()).orElseThrow(() -> new RuntimeException("Show not found"));
+        Screening screening = screeningRepository.findById(reservationRequest.getScreeningRoomId()).orElseThrow(() -> new RuntimeException("Screening not found"));
 
-        if (Duration.between(LocalDateTime.now(), show.getStartTime()).toMinutes() < 15){
-               throw new RuntimeException("You can't reserve tickets for show that starts in less than 15 minutes or has already started");
+        if (Duration.between(LocalDateTime.now(), screening.getStartTime()).toMinutes() < 15){
+               throw new RuntimeException("You can't reserve tickets for screening that starts in less than 15 minutes or has already started");
         }
 
         // Creates reservation object
         Reservation reservation = Reservation.builder()
                 .name(reservationRequest.getName())
                 .surname(reservationRequest.getSurname())
-                .expirationTime(show.getStartTime().minusMinutes(5))
+                .expirationTime(screening.getStartTime().minusMinutes(5))
                 .isPaid(false)
                 .build();
 
@@ -71,15 +71,15 @@ public class ReservationServiceImpl implements ReservationService {
         return ReservationResponse.builder()
                     .name(reservation.getName())
                     .surname(reservation.getSurname())
-                    .movieTitle(show.getMovie().getTitle())
-                    .cinemaHallNumber(show.getCinemaHall().getHallNumber())
-                    .startTime(show.getStartTime())
+                    .movieTitle(screening.getMovie().getTitle())
+                    .screeningRoomNumber(screening.getScreeningRoom().getNumber())
+                    .startTime(screening.getStartTime())
                     .totalPrice(reservation.getTotalPrice())
                     .expirationTime(reservation.getExpirationTime())
                     .tickets(reservation.getTickets().stream().map(ticket -> ReservationResponse.Ticket.builder()
                             .ticketType(ticket.getTicketType())
                             .row(ticket.getSeat().getRowNumber())
-                            .column(ticket.getSeat().getSeatNumber())
+                            .seatNumber(ticket.getSeat().getSeatNumber())
                             .price(ticket.getPrice())
                             .build()).toList())
                     .build();

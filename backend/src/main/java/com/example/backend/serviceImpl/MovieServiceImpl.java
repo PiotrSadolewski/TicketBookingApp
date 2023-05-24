@@ -1,7 +1,7 @@
 package com.example.backend.serviceImpl;
 
 import com.example.backend.model.Movie;
-import com.example.backend.model.Show;
+import com.example.backend.model.Screening;
 import com.example.backend.model.response.MovieResponse;
 import com.example.backend.repository.MovieRepository;
 import com.example.backend.service.MovieService;
@@ -30,17 +30,17 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public List<MovieResponse> getAllMoviesAndShowsByShowDate(LocalDateTime showDate){
-        LocalDateTime timeTo = showDate.withHour(23).withMinute(59).withSecond(59);
-        return movieRepository.getMoviesWithShowsByShowsDatePeriod(showDate, timeTo).stream()
+    public List<MovieResponse> getAllMoviesAndScreeningsByScreeningDate(LocalDateTime screeningDate){
+        LocalDateTime timeTo = screeningDate.withHour(23).withMinute(59).withSecond(59);
+        return movieRepository.getMoviesWithScreeningsByScreeningsDatePeriod(screeningDate, timeTo).stream()
                 .sorted(Comparator.comparing(Movie::getTitle))
                 .map(movie -> MovieResponse.builder()
                     .title(movie.getTitle())
-                    .shows(movie.getShows().stream()
-                            .sorted(Comparator.comparing(Show::getStartTime))
-                            .map(show -> MovieResponse.Show.builder()
-                                .showId(show.getId())
-                                .startTime(show.getStartTime())
+                    .screenings(movie.getScreenings().stream()
+                            .sorted(Comparator.comparing(Screening::getStartTime))
+                            .map(screening -> MovieResponse.Screening.builder()
+                                .screeningId(screening.getId())
+                                .startTime(screening.getStartTime())
                                 .build())
                             .collect(Collectors.toList()))
                     .build())

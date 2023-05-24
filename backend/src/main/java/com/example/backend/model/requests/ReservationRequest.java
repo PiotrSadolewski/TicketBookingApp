@@ -15,7 +15,7 @@ import java.util.List;
 public class ReservationRequest {
     private String name;
     private String surname;
-    private Long showId;
+    private Long screeningRoomId;
     private List<Ticket> tickets;
 
     @Builder

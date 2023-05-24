@@ -2,7 +2,6 @@ package com.example.backend.serviceImpl;
 
 import com.example.backend.model.Seat;
 import com.example.backend.repository.SeatRepository;
-import com.example.backend.repository.ShowRepository;
 import com.example.backend.service.SeatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +31,8 @@ public class SeatServiceImpl implements SeatService {
     }
 
     @Override
-    public List<Seat> getAvailableSeatsByShowId(Long showId) {
-        return seatRepository.getAvailableSeatsByShowId(showId);
+    public List<Seat> getAvailableSeatsByScreeningId(Long screeningId) {
+        return seatRepository.getAvailableSeatsByScreeningId(screeningId);
     }
 
 }

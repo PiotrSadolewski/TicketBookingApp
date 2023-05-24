@@ -33,9 +33,9 @@ public class MovieController {
         return ResponseEntity.ok(movieService.getMovieById(id));
     }
 
-    @GetMapping("/all/byShowDate")
-    public ResponseEntity<List<MovieResponse>> getAllMoviesAndShowsByShowDate(
-            @RequestParam("showDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime showDate) {
-        return ResponseEntity.ok(movieService.getAllMoviesAndShowsByShowDate(showDate));
+    @GetMapping("/all/byScreeningDate")
+    public ResponseEntity<List<MovieResponse>> getAllMoviesAndScreeningsByScreeningDate(
+            @RequestParam("screeningDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime screeningDate) {
+        return ResponseEntity.ok(movieService.getAllMoviesAndScreeningsByScreeningDate(screeningDate));
     }
 }

@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ShowRequest {
+public class ScreeningRequest {
     private LocalDateTime startTime;
     private Long movieId;
-    private Long cinemaHallId;
+    private Long screeningRoomId;
 }

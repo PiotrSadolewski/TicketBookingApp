@@ -11,5 +11,5 @@ public interface SeatService {
 
     List<Seat> getAllSeats();
 
-    List<Seat> getAvailableSeatsByShowId(Long showId);
+    List<Seat> getAvailableSeatsByScreeningId(Long screeningId);
 }

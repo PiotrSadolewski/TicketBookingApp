@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Long> {
-    @Query("SELECT m FROM Movie m JOIN FETCH m.shows s WHERE s.startTime BETWEEN ?1 AND ?2")
-    List<Movie> getMoviesWithShowsByShowsDatePeriod(LocalDateTime timeFrom, LocalDateTime timeTo);
+    @Query("SELECT m FROM Movie m JOIN FETCH m.screenings s WHERE s.startTime BETWEEN ?1 AND ?2")
+    List<Movie> getMoviesWithScreeningsByScreeningsDatePeriod(LocalDateTime timeFrom, LocalDateTime timeTo);
 
 }
 

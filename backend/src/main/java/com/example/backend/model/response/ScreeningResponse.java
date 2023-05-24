@@ -5,23 +5,23 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class MovieResponse {
-    private String title;
-    private List<Screening> screenings;
+public class ScreeningResponse {
+    private Integer screeningRoomNumber;
+    private List<Seat> seats;
 
     @Builder
     @AllArgsConstructor
     @NoArgsConstructor
     @Data
-    public static class Screening{
-        private Long screeningId;
-        private LocalDateTime startTime;
+    public static class Seat {
+        private Long id;
+        private Integer row;
+        private Integer seatNumber;
     }
 }

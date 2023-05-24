@@ -28,8 +28,8 @@ public class Seat {
     private Boolean isReserved;
 
     @ManyToOne()
-    @JoinColumn(name = "show_id")
+    @JoinColumn(name = "screening_id")
     @JsonBackReference()
     @NotNull
-    private Show show;
+    private Screening screening;
 }

@@ -16,8 +16,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SeatController {
     public final SeatService seatService;
-    @GetMapping("byShowId/{id}")
-    public ResponseEntity<List<Seat>> getAvailableSeatsByShowId(@PathVariable Long id) {
-        return ResponseEntity.ok(seatService.getAvailableSeatsByShowId(id));
+    @GetMapping("byScreeningId/{id}")
+    public ResponseEntity<List<Seat>> getAvailableSeatsByScreeningId(@PathVariable Long id) {
+        return ResponseEntity.ok(seatService.getAvailableSeatsByScreeningId(id));
     }
 }

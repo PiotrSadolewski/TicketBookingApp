@@ -10,5 +10,5 @@ public interface MovieService {
     Movie addMovie(Movie movie);
     List<Movie> getAllMovies();
     Movie getMovieById(Long id);
-    List<MovieResponse> getAllMoviesAndShowsByShowDate(LocalDateTime showDate);
+    List<MovieResponse> getAllMoviesAndScreeningsByScreeningDate(LocalDateTime screeningDate);
 }
