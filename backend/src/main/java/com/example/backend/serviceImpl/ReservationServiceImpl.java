@@ -1,5 +1,6 @@
 package com.example.backend.serviceImpl;
 
+import validation.ReservationValidation;
 import com.example.backend.model.*;
 import com.example.backend.model.requests.*;
 import com.example.backend.model.response.ReservationResponse;
@@ -12,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -26,11 +25,13 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public ReservationResponse addReservation(ReservationRequest reservationRequest) {
 
-        Screening screening = screeningRepository.findById(reservationRequest.getScreeningRoomId()).orElseThrow(() -> new RuntimeException("Screening not found"));
+        Screening screening = screeningRepository.findById(reservationRequest.getScreeningId()).
+                orElseThrow(() ->
+                        new RuntimeException("Screening not found")
+                );
 
-        if (Duration.between(LocalDateTime.now(), screening.getStartTime()).toMinutes() < 15){
-               throw new RuntimeException("You can't reserve tickets for screening that starts in less than 15 minutes or has already started");
-        }
+        // Validates if reservation time is at least 15 minutes before screening starts
+        ReservationValidation.validateReservationTime(screening.getStartTime());
 
         // Creates reservation object
         Reservation reservation = Reservation.builder()
@@ -40,15 +41,22 @@ public class ReservationServiceImpl implements ReservationService {
                 .isPaid(false)
                 .build();
 
+        //Validate if reservation request tickets are not empty
+        ReservationValidation.validateTickets(reservationRequest.getTickets());
+
         // Creates tickets objects and checks if seats are available
         List<Ticket> tickets = reservationRequest.getTickets().stream().map(ticketRequest -> {
-            Seat seat = seatRepository.findById(ticketRequest.getSeatId()).orElseThrow(() -> new RuntimeException("Seat not found"));
 
-            if (seat.getIsReserved()) {
-                throw new RuntimeException(
-                        "Seat with row number: " + seat.getRowNumber() + " seat number: " + seat.getSeatNumber() + " is already reserved"
-                );
-            }
+            Seat seat = seatRepository.findById(ticketRequest.getSeatId())
+                    .orElseThrow(() ->
+                            new RuntimeException("Seat not found")
+                    );
+
+
+            // Validates seat
+            ReservationValidation.validateIfSeatHaveGoodScreeningId(seat, screening.getId());
+            ReservationValidation.validateIfSeatIsAvailable(seat);
+
 
             seat.setIsReserved(true);
             return Ticket.builder()

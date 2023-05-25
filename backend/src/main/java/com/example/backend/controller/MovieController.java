@@ -2,6 +2,7 @@ package com.example.backend.controller;
 
 import com.example.backend.model.Movie;
 import com.example.backend.model.response.MovieResponse;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,7 @@ public class MovieController {
 
     @GetMapping("/all/byScreeningDate")
     public ResponseEntity<List<MovieResponse>> getAllMoviesAndScreeningsByScreeningDate(
-            @RequestParam("screeningDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime screeningDate) {
+            @RequestParam("screeningDate") @NotNull @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime screeningDate) {
         return ResponseEntity.ok(movieService.getAllMoviesAndScreeningsByScreeningDate(screeningDate));
     }
 }

@@ -8,6 +8,7 @@ import com.example.backend.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import validation.MovieValidation;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -31,6 +32,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public List<MovieResponse> getAllMoviesAndScreeningsByScreeningDate(LocalDateTime screeningDate){
+        MovieValidation.validateScreeningDate(screeningDate);
         LocalDateTime timeTo = screeningDate.withHour(23).withMinute(59).withSecond(59);
         return movieRepository.getMoviesWithScreeningsByScreeningsDatePeriod(screeningDate, timeTo).stream()
                 .sorted(Comparator.comparing(Movie::getTitle))

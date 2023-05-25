@@ -1,5 +1,6 @@
 package com.example.backend.model;
 
+import constraint.FuturePlus24Hours;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -22,6 +23,9 @@ public class Screening {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
     private Long id;
+
+    @NotNull
+//    @FuturePlus24Hours
     private LocalDateTime startTime;
 
     @ManyToOne

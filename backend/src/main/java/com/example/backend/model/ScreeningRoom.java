@@ -7,8 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Entity
 @AllArgsConstructor
@@ -28,8 +26,5 @@ public class ScreeningRoom {
 
     @NotNull
     private Integer seatsPerRow;
-
-//    @OneToMany(mappedBy = "screeningRoom")
-//    private Li st<Screening> screeenings;
 
 }
