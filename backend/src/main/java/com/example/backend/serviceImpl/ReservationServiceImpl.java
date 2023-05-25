@@ -11,6 +11,11 @@ import com.example.backend.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import validation.SeatValidation;
+import validation.exception.ReservationException;
+import validation.exception.ScreeningException;
+import validation.exception.SeatException;
+import validation.exception.TicketException;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -27,7 +32,7 @@ public class ReservationServiceImpl implements ReservationService {
 
         Screening screening = screeningRepository.findById(reservationRequest.getScreeningId()).
                 orElseThrow(() ->
-                        new RuntimeException("Screening not found")
+                        new ScreeningException("Screening not found")
                 );
 
         // Validates if reservation time is at least 15 minutes before screening starts
@@ -41,7 +46,7 @@ public class ReservationServiceImpl implements ReservationService {
                 .isPaid(false)
                 .build();
 
-        //Validate if reservation request tickets are not empty
+        //Validate tickets
         ReservationValidation.validateTickets(reservationRequest.getTickets());
 
         // Creates tickets objects and checks if seats are available
@@ -49,13 +54,14 @@ public class ReservationServiceImpl implements ReservationService {
 
             Seat seat = seatRepository.findById(ticketRequest.getSeatId())
                     .orElseThrow(() ->
-                            new RuntimeException("Seat not found")
+                            new SeatException("Seat not found")
                     );
 
 
             // Validates seat
             ReservationValidation.validateIfSeatHaveGoodScreeningId(seat, screening.getId());
-            ReservationValidation.validateIfSeatIsAvailable(seat);
+            SeatValidation.validateIfSeatIsNull(seat);
+            SeatValidation.validateIfSeatIsAvailable(seat);
 
 
             seat.setIsReserved(true);
@@ -103,12 +109,12 @@ public class ReservationServiceImpl implements ReservationService {
         return reservationRepository.findById(id).map(reservation -> {
             reservation.setIsPaid(true);
             return reservationRepository.save(reservation);
-        }).orElseThrow(() -> new RuntimeException("Reservation not found"));
+        }).orElseThrow(() -> new ReservationException("Reservation not found"));
     }
 
     @Override
     public Reservation getReservationById(Long id) {
-        return reservationRepository.findById(id).orElseThrow(() -> new RuntimeException("Reservation not found"));
+        return reservationRepository.findById(id).orElseThrow(() -> new ReservationException("Reservation not found"));
     }
 
     private BigDecimal setAutomaticPrice(TicketType ticketType) {
@@ -122,7 +128,7 @@ public class ReservationServiceImpl implements ReservationService {
             case STUDENT -> {
                 return new BigDecimal("12.50");
             }
-            default -> throw new RuntimeException("Invalid ticket type");
+            default -> throw new TicketException("Invalid ticket type");
         }
     }
 
