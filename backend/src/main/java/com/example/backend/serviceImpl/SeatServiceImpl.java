@@ -6,6 +6,7 @@ import com.example.backend.service.SeatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.example.backend.exception.NotFoundException;
 
 import java.util.List;
 
@@ -17,7 +18,8 @@ public class SeatServiceImpl implements SeatService {
 
     @Override
     public Seat getSeatById(Long id) {
-        return seatRepository.findById(id).orElseThrow(() -> new RuntimeException("Seat not found"));
+        return seatRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Seat with ID: " + id + " not found"));
     }
 
     @Override

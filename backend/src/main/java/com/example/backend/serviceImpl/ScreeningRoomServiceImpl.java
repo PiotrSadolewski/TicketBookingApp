@@ -6,6 +6,7 @@ import com.example.backend.service.ScreeningRoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.example.backend.exception.NotFoundException;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class ScreeningRoomServiceImpl implements ScreeningRoomService {
 
     @Override
     public ScreeningRoom getScreeningRoomById(Long id) {
-        return screeningRoomRepository.findById(id).orElseThrow(() -> new RuntimeException("ScreeningRoom not found"));
+        return screeningRoomRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("ScreeningRoom with ID: " + id + " not found"));
     }
 }

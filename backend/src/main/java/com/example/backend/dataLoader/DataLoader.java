@@ -1,4 +1,4 @@
-package com.example.backend.model.dataLoader;
+package com.example.backend.dataLoader;
 
 import com.example.backend.model.ScreeningRoom;
 import com.example.backend.model.Movie;

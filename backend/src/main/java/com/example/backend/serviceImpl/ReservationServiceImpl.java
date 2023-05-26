@@ -1,5 +1,7 @@
 package com.example.backend.serviceImpl;
 
+import com.example.backend.exception.NotFoundException;
+import com.example.backend.exception.ValidationException;
 import validation.ReservationValidation;
 import com.example.backend.model.*;
 import com.example.backend.model.requests.*;
@@ -12,10 +14,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import validation.SeatValidation;
-import validation.exception.ReservationException;
-import validation.exception.ScreeningException;
-import validation.exception.SeatException;
-import validation.exception.TicketException;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -32,7 +30,7 @@ public class ReservationServiceImpl implements ReservationService {
 
         Screening screening = screeningRepository.findById(reservationRequest.getScreeningId()).
                 orElseThrow(() ->
-                        new ScreeningException("Screening not found")
+                        new NotFoundException("Screening with ID: " + reservationRequest.getScreeningId() + " not found")
                 );
 
         // Validates if reservation time is at least 15 minutes before screening starts
@@ -54,7 +52,7 @@ public class ReservationServiceImpl implements ReservationService {
 
             Seat seat = seatRepository.findById(ticketRequest.getSeatId())
                     .orElseThrow(() ->
-                            new SeatException("Seat not found")
+                            new NotFoundException("Seat with ID: " + ticketRequest.getSeatId() + " not found")
                     );
 
 
@@ -109,12 +107,13 @@ public class ReservationServiceImpl implements ReservationService {
         return reservationRepository.findById(id).map(reservation -> {
             reservation.setIsPaid(true);
             return reservationRepository.save(reservation);
-        }).orElseThrow(() -> new ReservationException("Reservation not found"));
+        }).orElseThrow(() -> new NotFoundException("Reservation with ID: " + id + "not found"));
     }
 
     @Override
     public Reservation getReservationById(Long id) {
-        return reservationRepository.findById(id).orElseThrow(() -> new ReservationException("Reservation not found"));
+        return reservationRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Reservation with ID: " + id + "not found"));
     }
 
     private BigDecimal setAutomaticPrice(TicketType ticketType) {
@@ -128,7 +127,7 @@ public class ReservationServiceImpl implements ReservationService {
             case STUDENT -> {
                 return new BigDecimal("12.50");
             }
-            default -> throw new TicketException("Invalid ticket type");
+            default -> throw new ValidationException("Invalid ticket type");
         }
     }
 

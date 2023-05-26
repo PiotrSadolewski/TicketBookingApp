@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import validation.MovieValidation;
+import com.example.backend.exception.NotFoundException;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -27,7 +28,8 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie getMovieById(Long id) {
-        return movieRepository.findById(id).orElseThrow(() -> new RuntimeException("Movie not found"));
+        return movieRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Movie with ID: " + id + "not found"));
     }
 
     @Override

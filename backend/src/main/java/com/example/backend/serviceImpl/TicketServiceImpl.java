@@ -6,6 +6,7 @@ import com.example.backend.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.example.backend.exception.NotFoundException;
 
 import java.util.List;
 
@@ -27,7 +28,8 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public Ticket getTicketById(Long id) {
-        return ticketRepository.findById(id).orElseThrow(() -> new RuntimeException("Ticket not found"));
+        return ticketRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Ticket with ID: " + id + "not found"));
     }
 
 }

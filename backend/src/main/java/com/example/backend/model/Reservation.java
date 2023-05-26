@@ -26,7 +26,9 @@ public class Reservation {
     private String name;
 
     @Size(min = 3, message = "Name should have at least 3 characters")
-    @Pattern(regexp = "[A-Z][a-z]*(-[A-Z][a-z]*)?", message = "Surname should start with an uppercase letter")
+    @Pattern(regexp = "[A-Z][a-z]*(-[A-Z][a-z]*)?",
+            message = "Surname should start with an uppercase letter, and can consist of two parts separated with a\n" +
+                    "single dash")
     private String surname;
 
     @NotEmpty

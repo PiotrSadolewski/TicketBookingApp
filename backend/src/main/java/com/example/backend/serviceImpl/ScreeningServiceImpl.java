@@ -12,6 +12,7 @@ import com.example.backend.service.ScreeningService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.example.backend.exception.NotFoundException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,12 +28,15 @@ public class ScreeningServiceImpl implements ScreeningService {
 
     @Override
     public Screening addScreening(ScreeningRequest screeningRequest) {
-        Movie movie = movieRepository.findById(screeningRequest.getMovieId()).orElseThrow(() -> new RuntimeException("Movie not found"));
+        Movie movie = movieRepository.findById(screeningRequest.getMovieId())
+                .orElseThrow(() -> new NotFoundException("Movie with ID: " + screeningRequest.getMovieId()+ " not found"));
 
         Screening screening = Screening.builder()
                 .startTime(screeningRequest.getStartTime())
                 .movie(movie)
-                .screeningRoom(screeningRoomRepository.findById(screeningRequest.getScreeningRoomId()).orElseThrow(() -> new RuntimeException("Hall not found")))
+                .screeningRoom(screeningRoomRepository.findById(screeningRequest.getScreeningRoomId())
+                        .orElseThrow(() ->
+                                new NotFoundException("Screening room with ID: " + screeningRequest.getScreeningRoomId() + " not found")))
                 .build();
 
 
@@ -53,7 +57,8 @@ public class ScreeningServiceImpl implements ScreeningService {
 
     @Override
     public ScreeningResponse getScreeningById(Long id) {
-        Screening screening = screeningRepository.findById(id).orElseThrow(() -> new RuntimeException("Screening not found"));
+        Screening screening = screeningRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Screening with ID: " + id + " not found"));
 
         return ScreeningResponse.builder()
                 .screeningRoomNumber(screening.getScreeningRoom().getNumber())

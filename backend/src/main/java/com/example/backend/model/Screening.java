@@ -1,6 +1,5 @@
 package com.example.backend.model;
 
-import constraint.FuturePlus24Hours;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -34,7 +33,7 @@ public class Screening {
     private Movie movie;
 
     @ManyToOne
-    @JoinColumn(name = "screeningRoom_id")
+    @JoinColumn(name = "screening_room_id")
     @NotNull
     private ScreeningRoom screeningRoom;
 

@@ -1,6 +1,6 @@
 package com.example.backend.validator;
 
-import constraint.FuturePlus24Hours;
+import com.example.backend.constraint.FuturePlus24Hours;
 import jakarta.validation.ConstraintValidator;
 
 import java.time.LocalDateTime;

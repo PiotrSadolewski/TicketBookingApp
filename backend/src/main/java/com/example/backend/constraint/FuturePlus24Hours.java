@@ -1,4 +1,4 @@
-package constraint;
+package com.example.backend.constraint;
 
 import com.example.backend.validator.FuturePlus24HoursValidator;
 import jakarta.validation.Constraint;
