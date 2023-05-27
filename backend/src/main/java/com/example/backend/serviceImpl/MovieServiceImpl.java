@@ -8,7 +8,7 @@ import com.example.backend.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import validation.MovieValidation;
+import com.example.backend.validation.MovieValidation;
 import com.example.backend.exception.NotFoundException;
 
 import java.time.LocalDateTime;

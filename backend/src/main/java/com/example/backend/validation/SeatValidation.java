@@ -1,4 +1,4 @@
-package validation;
+package com.example.backend.validation;
 
 import com.example.backend.model.Seat;
 import com.example.backend.exception.ValidationException;
@@ -18,6 +18,4 @@ public class SeatValidation {
             throw new ValidationException("Seat is null");
         }
     }
-
-
 }

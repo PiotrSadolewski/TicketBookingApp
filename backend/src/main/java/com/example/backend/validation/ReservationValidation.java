@@ -1,4 +1,4 @@
-package validation;
+package com.example.backend.validation;
 
 import com.example.backend.model.Seat;
 import com.example.backend.model.requests.ReservationRequest;
@@ -13,7 +13,9 @@ public class ReservationValidation {
 
     public static void validateReservationTime(LocalDateTime screeningTime) {
         if (Duration.between(LocalDateTime.now(), screeningTime).toMinutes() < 15) {
-            throw new ValidationException("You can't reserve tickets for a screening that starts in less than 15 minutes or has already started");
+            throw new ValidationException(
+                    "You can't reserve tickets for a screening that starts in less than 15 minutes or has already started"
+            );
         }
     }
 
@@ -26,13 +28,8 @@ public class ReservationValidation {
     }
 
     public static void validateTickets(List<ReservationRequest.Ticket> tickets){
-        if (tickets.isEmpty()) {
-            throw new ValidationException("You must reserve at least one ticket");
-        }
-
-        if (tickets.contains(null)) {
-            throw new ValidationException("Ticket list contains null");
-        }
+        validateIfTicketListIsEmpty(tickets);
+        validateIfTicketListIsNull(tickets);
 
         tickets.forEach(ticket -> {
             TicketValidation.validateIfTicketTypeIsNull(ticket.getTicketType());
@@ -41,4 +38,15 @@ public class ReservationValidation {
         });
     }
 
+    public static void validateIfTicketListIsEmpty(List<ReservationRequest.Ticket> tickets){
+        if (tickets.isEmpty()) {
+            throw new ValidationException("You must reserve at least one ticket");
+        }
+    }
+
+    public static void validateIfTicketListIsNull(List<ReservationRequest.Ticket> tickets){
+        if (tickets == null) {
+            throw new ValidationException("Ticket list is null");
+        }
+    }
 }

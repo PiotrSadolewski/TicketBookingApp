@@ -1,4 +1,4 @@
-package validation;
+package com.example.backend.validation;
 
 import com.example.backend.model.TicketType;
 import com.example.backend.exception.ValidationException;

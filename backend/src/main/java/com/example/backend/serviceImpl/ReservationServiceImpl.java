@@ -2,7 +2,7 @@ package com.example.backend.serviceImpl;
 
 import com.example.backend.exception.NotFoundException;
 import com.example.backend.exception.ValidationException;
-import validation.ReservationValidation;
+import com.example.backend.validation.ReservationValidation;
 import com.example.backend.model.*;
 import com.example.backend.model.requests.*;
 import com.example.backend.model.response.ReservationResponse;
@@ -13,7 +13,7 @@ import com.example.backend.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import validation.SeatValidation;
+import com.example.backend.validation.SeatValidation;
 
 import java.math.BigDecimal;
 import java.util.List;
