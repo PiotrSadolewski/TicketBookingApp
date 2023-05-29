@@ -49,7 +49,6 @@ public class MovieServiceImpl implements MovieService {
                             .collect(Collectors.toList()))
                     .build())
                 .toList();
-
     }
 
     @Override

@@ -11,4 +11,7 @@ import java.util.List;
 public interface SeatRepository extends JpaRepository<Seat, Long> {
     @Query("SELECT s FROM Seat s WHERE s.screening.id = ?1 AND s.isReserved = false ")
     List<Seat> getAvailableSeatsByScreeningId(Long screeningId);
+
+    @Query("SELECT s FROM Seat s WHERE s.rowNumber = ?1 AND s.screening.id = ?2")
+    List<Seat> getListOfSeatsByRowAndScreeningId(Long screeningId, Integer rowNumber);
 }
