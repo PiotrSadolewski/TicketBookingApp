@@ -5,6 +5,7 @@ import com.example.backend.model.Screening;
 import com.example.backend.model.response.MovieResponse;
 import com.example.backend.repository.MovieRepository;
 import com.example.backend.service.MovieService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Transactional
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class MovieServiceImpl implements MovieService {

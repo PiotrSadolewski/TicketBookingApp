@@ -6,7 +6,7 @@ INSERT INTO Screening_Room (NUMBER, ROW_QUANTITY, SEATS_PER_ROW) VALUES (1, 5, 8
 INSERT INTO Screening_Room (NUMBER, ROW_QUANTITY, SEATS_PER_ROW) VALUES (2, 4, 6);
 INSERT INTO Screening_Room (NUMBER, ROW_QUANTITY, SEATS_PER_ROW) VALUES (3, 5, 5);
 
-INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-01-08 23:40:00', 2, 1);
+INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-06-08 23:40:00', 2, 1);
 
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 1, 1);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 2, 1);

@@ -1,6 +1,7 @@
 package com.example.backend.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,7 @@ public class Screening {
     private Long id;
 
     @NotNull
-//    @FuturePlus24Hours
+    @Future
     private LocalDateTime startTime;
 
     @ManyToOne

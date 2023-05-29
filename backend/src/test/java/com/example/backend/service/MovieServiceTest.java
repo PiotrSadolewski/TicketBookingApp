@@ -57,12 +57,4 @@ public class MovieServiceTest {
         // then
         Assertions.assertEquals(1, movieResponses.size());
     }
-
-
-
-
-    @Test
-    public void addMovie_ReturnMovie() {
-
-    }
 }

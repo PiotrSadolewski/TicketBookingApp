@@ -7,7 +7,8 @@ import com.example.backend.model.response.ScreeningResponse;
 import java.util.List;
 
 public interface ScreeningService {
-    Screening addScreening(ScreeningRequest screeningRequest);
+    Screening addScreening(Screening screening);
+    Screening addScreeningWithSeats(ScreeningRequest screeningRequest);
     List<Screening> getAllScreenings();
     ScreeningResponse getScreeningById(Long id);
 }

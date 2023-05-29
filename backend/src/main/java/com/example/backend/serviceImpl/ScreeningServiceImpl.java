@@ -9,6 +9,7 @@ import com.example.backend.repository.ScreeningRoomRepository;
 import com.example.backend.repository.MovieRepository;
 import com.example.backend.repository.ScreeningRepository;
 import com.example.backend.service.ScreeningService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+@Transactional
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ScreeningServiceImpl implements ScreeningService {
@@ -27,7 +29,12 @@ public class ScreeningServiceImpl implements ScreeningService {
     private final ScreeningRoomRepository screeningRoomRepository;
 
     @Override
-    public Screening addScreening(ScreeningRequest screeningRequest) {
+    public Screening addScreening(Screening screening) {
+        return screeningRepository.save(screening);
+    }
+
+    @Override
+    public Screening addScreeningWithSeats(ScreeningRequest screeningRequest) {
         Movie movie = movieRepository.findById(screeningRequest.getMovieId())
                 .orElseThrow(() -> new NotFoundException("Movie with ID: " + screeningRequest.getMovieId()+ " not found"));
 
