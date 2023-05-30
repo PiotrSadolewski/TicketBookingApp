@@ -6,7 +6,7 @@ INSERT INTO Screening_Room (NUMBER, ROW_QUANTITY, SEATS_PER_ROW) VALUES (1, 5, 8
 INSERT INTO Screening_Room (NUMBER, ROW_QUANTITY, SEATS_PER_ROW) VALUES (2, 4, 6);
 INSERT INTO Screening_Room (NUMBER, ROW_QUANTITY, SEATS_PER_ROW) VALUES (3, 5, 5);
 
-INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-06-08 23:40:00', 2, 1);
+INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-06-14 23:40:00', 2, 1);
 
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 1, 1);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 2, 1);
@@ -49,7 +49,7 @@ INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FA
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 5, 7, 1);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 5, 8, 1);
 
-INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-06-08 12:30:00', 3, 1);
+INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-06-14 12:30:00', 3, 1);
 
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 1, 2);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 2, 2);
@@ -92,7 +92,7 @@ INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FA
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 5, 7, 2);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 5, 8, 2);
 
-INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-06-08 12:30:00', 2, 2);
+INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-06-14 12:30:00', 2, 2);
 
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 1, 3);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 2, 3);
@@ -119,7 +119,7 @@ INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FA
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 4, 5, 3);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 4, 6, 3);
 
-INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-07-08 10:45:00', 1, 2);
+INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-05-15 10:45:00', 1, 2);
 
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 1, 4);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 2, 4);
@@ -146,7 +146,7 @@ INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FA
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 4, 5, 4);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 4, 6, 4);
 
-INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-07-08 16:45:00', 1, 3);
+INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-06-15 16:45:00', 1, 3);
 
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 1, 5);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 2, 5);
@@ -174,7 +174,7 @@ INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FA
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 5, 4, 5);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 5, 5, 5);
 
-INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-07-08 20:45:00', 2, 3);
+INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-06-15 20:45:00', 2, 3);
 
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 1, 6);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 2, 6);
