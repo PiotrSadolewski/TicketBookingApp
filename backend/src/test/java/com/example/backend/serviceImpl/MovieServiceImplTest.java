@@ -1,11 +1,10 @@
-package com.example.backend.service;
+package com.example.backend.serviceImpl;
 
 import com.example.backend.exception.ValidationException;
 import com.example.backend.model.Movie;
 import com.example.backend.model.Screening;
 import com.example.backend.model.response.MovieResponse;
 import com.example.backend.repository.MovieRepository;
-import com.example.backend.serviceImpl.MovieServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,7 +20,7 @@ import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
-public class MovieServiceTest {
+public class MovieServiceImplTest {
     @Mock
     private MovieRepository movieRepository;
     @InjectMocks

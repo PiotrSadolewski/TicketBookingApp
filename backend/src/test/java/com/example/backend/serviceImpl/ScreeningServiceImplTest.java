@@ -1,4 +1,4 @@
-package com.example.backend.service;
+package com.example.backend.serviceImpl;
 
 import com.example.backend.exception.NotFoundException;
 import com.example.backend.model.Movie;
@@ -6,7 +6,6 @@ import com.example.backend.model.Screening;
 import com.example.backend.model.ScreeningRoom;
 import com.example.backend.model.Seat;
 import com.example.backend.repository.ScreeningRepository;
-import com.example.backend.serviceImpl.ScreeningServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,7 +20,7 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ScreeningServiceTest {
+public class ScreeningServiceImplTest {
 
     @Mock
     private ScreeningRepository screeningRepository;
