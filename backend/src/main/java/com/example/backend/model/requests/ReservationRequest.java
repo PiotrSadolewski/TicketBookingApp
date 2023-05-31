@@ -1,17 +1,15 @@
 package com.example.backend.model.requests;
 
 import com.example.backend.model.TicketType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class ReservationRequest {
     private String name;
     private String surname;
@@ -21,7 +19,8 @@ public class ReservationRequest {
     @Builder
     @AllArgsConstructor
     @NoArgsConstructor
-    @Data
+    @Getter
+    @Setter
     public static class Ticket {
         private TicketType ticketType;
         private Long seatId;

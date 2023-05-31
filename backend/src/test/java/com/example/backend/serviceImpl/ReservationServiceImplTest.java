@@ -99,7 +99,6 @@ public class ReservationServiceImplTest {
 
     @Test
     void addReservation_ValidRequest_ReturnsReservationResponse() {
-
         when(screeningRepository.findById(validReservationRequest.getScreeningId()))
                 .thenReturn(Optional.of(screening));
 

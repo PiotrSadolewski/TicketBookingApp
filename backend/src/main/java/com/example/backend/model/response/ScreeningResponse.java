@@ -1,16 +1,14 @@
 package com.example.backend.model.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class ScreeningResponse {
     private Integer screeningRoomNumber;
     private List<Seat> seats;
@@ -18,7 +16,8 @@ public class ScreeningResponse {
     @Builder
     @AllArgsConstructor
     @NoArgsConstructor
-    @Data
+    @Getter
+    @Setter
     public static class Seat {
         private Long id;
         private Integer row;

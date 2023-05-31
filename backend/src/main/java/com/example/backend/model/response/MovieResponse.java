@@ -1,9 +1,6 @@
 package com.example.backend.model.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,7 +8,8 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class MovieResponse {
     private String title;
     private List<Screening> screenings;
@@ -19,7 +17,8 @@ public class MovieResponse {
     @Builder
     @AllArgsConstructor
     @NoArgsConstructor
-    @Data
+    @Getter
+    @Setter
     public static class Screening{
         private Long screeningId;
         private LocalDateTime startTime;

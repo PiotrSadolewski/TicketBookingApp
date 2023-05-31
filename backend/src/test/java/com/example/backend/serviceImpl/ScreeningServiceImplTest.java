@@ -46,6 +46,7 @@ public class ScreeningServiceImplTest {
 
         //given
         Movie movie = Movie.builder()
+                .id(1L)
                 .title("title")
                 .duration(Duration.ofMinutes(120))
                 .genre("genre")
@@ -53,6 +54,7 @@ public class ScreeningServiceImplTest {
                 .build();
 
         ScreeningRoom screeningRoom = ScreeningRoom.builder()
+                .id(1L)
                 .number(1)
                 .rowQuantity(1)
                 .seatsPerRow(1)
@@ -60,22 +62,20 @@ public class ScreeningServiceImplTest {
 
 
         Screening screening = Screening.builder()
+                .id(1L)
                 .startTime(LocalDateTime.now().plusDays(1))
                 .movie(movie)
                 .screeningRoom(screeningRoom)
                 .build();
 
         List<Seat> seats = List.of(Seat.builder()
+                .id(1L)
                 .rowNumber(1)
                 .seatNumber(1)
                 .isReserved(false)
                 .build());
 
         screening.setSeats(seats);
-
-
-        screeningService.addScreening(screening);
-
         //when
         when(screeningRepository.findById(1L)).thenReturn(java.util.Optional.of(screening));
 

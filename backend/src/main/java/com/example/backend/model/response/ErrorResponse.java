@@ -1,4 +1,4 @@
-package com.example.backend.model;
+package com.example.backend.model.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
@@ -25,12 +25,9 @@ public class ErrorResponse {
         this.timestamp = new Date();
     }
 
-    public ErrorResponse(String message, List<String> errors, HttpStatus status) {
-            this.message = message;
-            this.errors = errors;
-            this.timestamp = new Date();
-            this.status = status.name();
-            this.code = status.value();
+    public ErrorResponse(HttpStatus status, String message, List<String> errors) {
+        this(status, message);
+        this.errors = errors;
     }
 }
 

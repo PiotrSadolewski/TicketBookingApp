@@ -1,7 +1,7 @@
 package com.example.backend.handler;
 
 
-import com.example.backend.model.ErrorResponse;
+import com.example.backend.model.response.ErrorResponse;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ public class ValidationExceptionHandler {
             errors.add(violation.getMessage());
         }
 
-        ErrorResponse errorDetails = new ErrorResponse("Validation Failed", errors, HttpStatus.BAD_REQUEST);
+        ErrorResponse errorDetails = new ErrorResponse(HttpStatus.BAD_REQUEST, "Validation Failed", errors);
 
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }

@@ -51,24 +51,23 @@ public class ReservationServiceImpl implements ReservationService {
 
         // Creates tickets objects and checks if seats are available
         List<Ticket> tickets = reservationRequest.getTickets()
-                .stream()
-                .map(ticketRequest -> {
+            .stream()
+            .map(ticketRequest -> {
+                Seat seat = seatRepository.findById(ticketRequest.getSeatId()).orElseThrow(() ->
+                        new NotFoundException("Seat with ID: " + ticketRequest.getSeatId() + " not found"));
 
-            Seat seat = seatRepository.findById(ticketRequest.getSeatId()).orElseThrow(() ->
-                            new NotFoundException("Seat with ID: " + ticketRequest.getSeatId() + " not found"));
+                ReservationValidation.validateIfSeatHaveGoodScreeningId(seat, screening.getId());
+                SeatValidation.validateIfSeatDoNotLeftPlaceOverInARow(
+                        seatRepository.getListOfSeatsByRowAndScreeningId(screening.getId(),seat.getRowNumber()), seat);
 
-            ReservationValidation.validateIfSeatHaveGoodScreeningId(seat, screening.getId());
-            SeatValidation.validateIfSeatDoNotLeftPlaceOverInARow(
-                    seatRepository.getListOfSeatsByRowAndScreeningId(screening.getId(),seat.getRowNumber()), seat);
+                seat.setIsReserved(true);
 
-            seat.setIsReserved(true);
-
-            return Ticket.builder()
-                    .ticketType(ticketRequest.getTicketType())
-                    .seat(seat)
-                    .price(setAutomaticPrice(ticketRequest.getTicketType()))
-                    .reservation(reservation)
-                    .build();
+                return Ticket.builder()
+                        .ticketType(ticketRequest.getTicketType())
+                        .seat(seat)
+                        .price(setAutomaticPrice(ticketRequest.getTicketType()))
+                        .reservation(reservation)
+                        .build();
         }).toList();
 
         // Sets tickets and total price to reservation
@@ -104,9 +103,9 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public Reservation setReservationPaid(Long id) {
         return reservationRepository.findById(id).map(reservation -> {
-            reservation.setIsPaid(true);
-            return reservationRepository.save(reservation);
-        }).orElseThrow(() -> new NotFoundException("Reservation with ID: " + id + "not found"));
+                reservation.setIsPaid(true);
+                return reservationRepository.save(reservation);
+            }).orElseThrow(() -> new NotFoundException("Reservation with ID: " + id + "not found"));
     }
 
     @Override

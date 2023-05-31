@@ -1,10 +1,7 @@
 package com.example.backend.model.response;
 
 import com.example.backend.model.TicketType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -13,7 +10,8 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class ReservationResponse {
     private String name;
     private String surname;
@@ -27,7 +25,8 @@ public class ReservationResponse {
     @Builder
     @AllArgsConstructor
     @NoArgsConstructor
-    @Data
+    @Getter
+    @Setter
     public static class Ticket {
         private TicketType ticketType;
         private Integer row;

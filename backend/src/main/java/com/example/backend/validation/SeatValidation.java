@@ -14,6 +14,7 @@ public class SeatValidation {
     }
 
     public static void validateIfSeatDoNotLeftPlaceOverInARow(List<Seat> seats, Seat seat){
+        // Check if seat is available
         validateIfSeatIsAvailable(seat);
 
         if (seat.getSeatNumber() == 1)
