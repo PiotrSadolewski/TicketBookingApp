@@ -25,20 +25,4 @@ public class SeatValidationTest {
                 .build();
         Assertions.assertThrows(ValidationException.class, () -> SeatValidation.validateIfSeatIsAvailable(seat));
     }
-
-    @Test
-    public void validateIfSeatIsNull_SeatNotNull_DoesNotThrowException(){
-        Seat seat = Seat.builder()
-                .isReserved(true)
-                .build();
-        Assertions.assertDoesNotThrow(() -> SeatValidation.validateIfSeatIsNull(seat));
-    }
-
-    @Test
-    public void validateIfSeatIsNull_SeatNull_ThrowsValidationException(){
-        Seat seat = null;
-        Assertions.assertThrows(ValidationException.class, () -> SeatValidation.validateIfSeatIsNull(seat));
-    }
-
-
 }

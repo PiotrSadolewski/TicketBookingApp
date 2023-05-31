@@ -10,6 +10,7 @@ import com.example.backend.repository.ReservationRepository;
 import com.example.backend.repository.SeatRepository;
 import com.example.backend.repository.ScreeningRepository;
 import com.example.backend.service.ReservationService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import com.example.backend.validation.SeatValidation;
 import java.math.BigDecimal;
 import java.util.List;
 
+@Transactional
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ReservationServiceImpl implements ReservationService {
@@ -27,7 +29,7 @@ public class ReservationServiceImpl implements ReservationService {
     private final ScreeningRepository screeningRepository;
     @Override
     public ReservationResponse addReservation(ReservationRequest reservationRequest) {
-
+        // Finds screening by ID
         Screening screening = screeningRepository.findById(reservationRequest.getScreeningId()).
                 orElseThrow(() ->
                         new NotFoundException("Screening with ID: " + reservationRequest.getScreeningId() + " not found")
@@ -48,21 +50,19 @@ public class ReservationServiceImpl implements ReservationService {
         ReservationValidation.validateTickets(reservationRequest.getTickets());
 
         // Creates tickets objects and checks if seats are available
-        List<Ticket> tickets = reservationRequest.getTickets().stream().map(ticketRequest -> {
+        List<Ticket> tickets = reservationRequest.getTickets()
+                .stream()
+                .map(ticketRequest -> {
 
-            Seat seat = seatRepository.findById(ticketRequest.getSeatId())
-                    .orElseThrow(() ->
-                            new NotFoundException("Seat with ID: " + ticketRequest.getSeatId() + " not found")
-                    );
+            Seat seat = seatRepository.findById(ticketRequest.getSeatId()).orElseThrow(() ->
+                            new NotFoundException("Seat with ID: " + ticketRequest.getSeatId() + " not found"));
 
-
-            // Validates seat
             ReservationValidation.validateIfSeatHaveGoodScreeningId(seat, screening.getId());
-            SeatValidation.validateIfSeatIsNull(seat);
-            SeatValidation.validateIfSeatIsAvailable(seat);
-
+            SeatValidation.validateIfSeatDoNotLeftPlaceOverInARow(
+                    seatRepository.getListOfSeatsByRowAndScreeningId(screening.getId(),seat.getRowNumber()), seat);
 
             seat.setIsReserved(true);
+
             return Ticket.builder()
                     .ticketType(ticketRequest.getTicketType())
                     .seat(seat)
@@ -74,7 +74,6 @@ public class ReservationServiceImpl implements ReservationService {
         // Sets tickets and total price to reservation
         reservation.setTickets(tickets);
         reservation.setTotalPrice(tickets.stream().reduce(BigDecimal.ZERO, (subtotal, ticket) -> subtotal.add(ticket.getPrice()), BigDecimal::add));
-
 
         // Saves reservation to database
         reservationRepository.save(reservation);

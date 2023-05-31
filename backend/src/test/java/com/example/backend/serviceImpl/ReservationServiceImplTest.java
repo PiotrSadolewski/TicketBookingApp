@@ -107,7 +107,7 @@ public class ReservationServiceImplTest {
                 .thenReturn(Optional.of(seat));
 
         when(seatRepository.getListOfSeatsByRowAndScreeningId(anyLong(), anyInt()))
-                .thenReturn(List.of(seat));
+                .thenReturn(List.of(seat, seat, seat, seat));
 
         when(reservationRepository.save(Mockito.any(Reservation.class)))
                 .thenReturn(reservation);
