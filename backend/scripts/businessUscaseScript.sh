@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "Requesting all movies by chosen date (2023-06-14T09:40:00)"
 echo "Response: "
 curl 'http://localhost:8080/api/movies/all/byScreeningDate?screeningDate=2023-06-14T09:40:00' | jq
