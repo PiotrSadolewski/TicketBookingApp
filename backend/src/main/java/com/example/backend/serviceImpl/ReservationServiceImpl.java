@@ -57,7 +57,7 @@ public class ReservationServiceImpl implements ReservationService {
                         new NotFoundException("Seat with ID: " + ticketRequest.getSeatId() + " not found"));
 
                 ReservationValidation.validateIfSeatHaveGoodScreeningId(seat, screening.getId());
-                SeatValidation.validateIfSeatDoNotLeftPlaceOverInARow(
+                SeatValidation.validateSeat(
                         seatRepository.getListOfSeatsByRowAndScreeningId(screening.getId(),seat.getRowNumber()), seat);
 
                 seat.setIsReserved(true);
