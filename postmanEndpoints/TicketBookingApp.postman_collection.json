@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "309904f3-9506-47b5-87be-a487af93a278",
+		"name": "TicketBookingApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15173511"
+	},
+	"item": [
+		{
+			"name": "getScreeningById",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "addReservation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Jhony\",\r\n  \"surname\": \"Deep\",\r\n  \"screeningRoomId\" : 1,\r\n  \"tickets\": [\r\n    {\r\n        \"ticketType\": \"ADULT\",\r\n        \"seatId\" : 1\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/reservations/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"reservations",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getMovieByTimePeriod",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/movies/all/byScreeningDate?screeningDate=2023-06-14T09:40:00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movies",
+						"all",
+						"byScreeningDate"
+					],
+					"query": [
+						{
+							"key": "screeningDate",
+							"value": "2023-06-14T09:40:00"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
