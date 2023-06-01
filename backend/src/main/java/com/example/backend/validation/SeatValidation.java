@@ -2,7 +2,6 @@ package com.example.backend.validation;
 
 import com.example.backend.model.Seat;
 import com.example.backend.exception.ValidationException;
-import lombok.Setter;
 
 import java.util.List;
 public class SeatValidation {
@@ -49,38 +48,51 @@ public class SeatValidation {
     }
 
     public static void validateSecondToLastSeatInRow(List<Seat> seatsInRow, int seatNumber){
-        if (!getRightSeatIsReserved(seatsInRow, seatNumber) && !getLeftSeatIsReserved(seatsInRow,seatNumber)
-                && getSecondLeftSeatIsReserved(seatsInRow, seatNumber))
+        boolean rightSeat = getRightSeatIsReserved(seatsInRow, seatNumber);
+        boolean leftSeat = getLeftSeatIsReserved(seatsInRow, seatNumber);
+        boolean secondLeftSeat = getSecondLeftSeatIsReserved(seatsInRow, seatNumber);
+
+        if (!rightSeat && !leftSeat && secondLeftSeat)
             throw new ValidationException("You can't reserve this seat because it will leave a place over in a row");
     }
 
     public static void validateSecondSeatInARow(List<Seat> seatsInRow, int seatNumber){
-        if (!getLeftSeatIsReserved(seatsInRow, seatNumber) && !getRightSeatIsReserved(seatsInRow, seatNumber)
-                && getSecondRightSeatIsReserved(seatsInRow, seatNumber))
+        boolean rightSeat = getRightSeatIsReserved(seatsInRow, seatNumber);
+        boolean leftSeat = getLeftSeatIsReserved(seatsInRow, seatNumber);
+        boolean secondRightSeat = getSecondRightSeatIsReserved(seatsInRow, seatNumber);
+
+        if (!leftSeat && !rightSeat && secondRightSeat)
             throw new ValidationException("You can't reserve this seat because it will leave a place over in a row");
     }
 
     public static void validateRightEdge(List<Seat> seatsInRow, int seatNumber){
-        if (!getLeftSeatIsReserved(seatsInRow, seatNumber) && getSecondLeftSeatIsReserved(seatsInRow, seatNumber))
+        boolean leftSeat = getLeftSeatIsReserved(seatsInRow, seatNumber);
+        boolean secondLeftSeat = getSecondLeftSeatIsReserved(seatsInRow, seatNumber);
+
+        if (!leftSeat && secondLeftSeat)
             throw new ValidationException("You can't reserve this seat because it will leave a place over in a row");
     }
 
     public static void validateSeatInMiddle(List<Seat> seatsInRow, int seatNumber){
-        if (!getLeftSeatIsReserved(seatsInRow, seatNumber) && !getRightSeatIsReserved(seatsInRow, seatNumber)
-                && getSecondLeftSeatIsReserved(seatsInRow, seatNumber) && getSecondRightSeatIsReserved(seatsInRow, seatNumber))
+        boolean leftSeat = getLeftSeatIsReserved(seatsInRow, seatNumber);
+        boolean rightSeat = getRightSeatIsReserved(seatsInRow, seatNumber);
+        boolean secondLeftSeat = getSecondLeftSeatIsReserved(seatsInRow, seatNumber);
+        boolean secondRightSeat = getSecondRightSeatIsReserved(seatsInRow, seatNumber);
+
+        if (!leftSeat && !rightSeat && secondLeftSeat && secondRightSeat)
             throw new ValidationException("You can't reserve this seat because it will leave a place over in a row");
 
-        if (!getLeftSeatIsReserved(seatsInRow, seatNumber) && getSecondLeftSeatIsReserved(seatsInRow, seatNumber)
-                && !getRightSeatIsReserved(seatsInRow, seatNumber)  && !getSecondRightSeatIsReserved(seatsInRow, seatNumber))
+        if (!leftSeat && secondLeftSeat && !rightSeat  && !secondRightSeat)
             throw new ValidationException("You can't reserve this seat because it will leave a place over in a row");
 
-        if (!getRightSeatIsReserved(seatsInRow,seatNumber) && getSecondRightSeatIsReserved(seatsInRow,seatNumber)
-                && !getLeftSeatIsReserved(seatsInRow,seatNumber) && !getSecondLeftSeatIsReserved(seatsInRow,seatNumber))
+        if (!rightSeat && secondRightSeat && !leftSeat && !secondLeftSeat)
             throw new ValidationException("You can't reserve this seat because it will leave a place over in a row");
     }
 
     public static void validateLeftEdge(List<Seat> seatsInRow, int seatNumber){
-        if (!getRightSeatIsReserved(seatsInRow, seatNumber) && getSecondRightSeatIsReserved(seatsInRow, seatNumber))
+        boolean rightSeat = getRightSeatIsReserved(seatsInRow, seatNumber);
+        boolean secondRightSeat = getSecondRightSeatIsReserved(seatsInRow, seatNumber);
+        if (!rightSeat && secondRightSeat)
             throw new ValidationException("You can't reserve this seat because it will leave a place over in a row");
     }
 
