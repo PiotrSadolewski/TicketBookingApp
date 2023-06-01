@@ -49,7 +49,7 @@ public class ReservationServiceImpl implements ReservationService {
         //Validate tickets
         ReservationValidation.validateTickets(reservationRequest.getTickets());
 
-        // Creates tickets objects and checks if seats are available
+        // Creates tickets objects and checks if seats are available to reservation
         List<Ticket> tickets = reservationRequest.getTickets()
             .stream()
             .map(ticketRequest -> {
@@ -128,7 +128,6 @@ public class ReservationServiceImpl implements ReservationService {
             default -> throw new ValidationException("Invalid ticket type");
         }
     }
-
 }
 
 
