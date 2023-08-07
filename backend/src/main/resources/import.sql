@@ -1,12 +1,12 @@
-INSERT INTO Movie (DESCRIPTION, DURATION, FILM_DIRECTOR, GENRE, TITLE) VALUES ('A romantic disaster film about the sinking of the RMS Titanic.', INTERVAL '11640' SECOND, 'James Cameron', 'Romance, Drama', 'Titanic');
-INSERT INTO Movie (DESCRIPTION, DURATION, FILM_DIRECTOR, GENRE, TITLE) VALUES ('A psychological thriller film directed by Martin Scorsese.', INTERVAL '8280' SECOND, 'Martin Scorsese', 'Mystery, Thriller', 'Shutter Island');
-INSERT INTO Movie (DESCRIPTION, DURATION, FILM_DIRECTOR, GENRE, TITLE) VALUES ('A science fiction action film directed by Christopher Nolan.', INTERVAL '8880' SECOND, 'Christopher Nolan', 'Action, Sci-Fi', 'Inception');
+INSERT INTO Movie (DESCRIPTION, DURATION, FILM_DIRECTOR, GENRE, TITLE, IMAGE_URL) VALUES ('A family-friendly animated film featuring Barbie and her adventures.', INTERVAL '7200' SECOND, 'Unknown Director', 'Animation, Family', 'Barbie', 'https://i.imgur.com/Qyvx7oX.jpg');
+INSERT INTO Movie (DESCRIPTION, DURATION, FILM_DIRECTOR, GENRE, TITLE, IMAGE_URL) VALUES ('A biographical drama about the life of J. Robert Oppenheimer, the physicist who led the Manhattan Project during World War II.', INTERVAL '7200' SECOND, 'Christopher Nolan', 'Biography, Drama', 'Oppenheimer', 'https://i.imgur.com/cbPxaMu.jpg');
+INSERT INTO Movie (DESCRIPTION, DURATION, FILM_DIRECTOR, GENRE, TITLE, IMAGE_URL) VALUES ('A science fiction action film directed by Christopher Nolan.', INTERVAL '8880' SECOND, 'Christopher Nolan', 'Action, Sci-Fi', 'Inception', 'https://i.imgur.com/aCbKufn.jpg');
 
 INSERT INTO Screening_Room (NUMBER, ROW_QUANTITY, SEATS_PER_ROW) VALUES (1, 5, 8);
 INSERT INTO Screening_Room (NUMBER, ROW_QUANTITY, SEATS_PER_ROW) VALUES (2, 4, 6);
 INSERT INTO Screening_Room (NUMBER, ROW_QUANTITY, SEATS_PER_ROW) VALUES (3, 5, 5);
 
-INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-06-14 23:40:00', 2, 1);
+INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-09-14 23:40:00', 2, 1);
 
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 1, 1);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 2, 1);
@@ -49,7 +49,7 @@ INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FA
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 5, 7, 1);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 5, 8, 1);
 
-INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-06-14 12:30:00', 3, 1);
+INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-09-14 12:30:00', 3, 1);
 
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 1, 2);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 2, 2);
@@ -92,7 +92,7 @@ INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FA
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 5, 7, 2);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 5, 8, 2);
 
-INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-06-14 12:30:00', 2, 2);
+INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-09-14 12:30:00', 2, 2);
 
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 1, 3);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 2, 3);
@@ -119,7 +119,7 @@ INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FA
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 4, 5, 3);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 4, 6, 3);
 
-INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-05-15 10:45:00', 1, 2);
+INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-09-15 10:45:00', 1, 2);
 
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 1, 4);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 2, 4);
@@ -146,7 +146,7 @@ INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FA
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 4, 5, 4);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 4, 6, 4);
 
-INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-06-15 16:45:00', 1, 3);
+INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-09-15 16:45:00', 1, 3);
 
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 1, 5);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 2, 5);
@@ -174,7 +174,7 @@ INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FA
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 5, 4, 5);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 5, 5, 5);
 
-INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-06-15 20:45:00', 2, 3);
+INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-09-15 20:45:00', 2, 3);
 
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 1, 6);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 2, 6);

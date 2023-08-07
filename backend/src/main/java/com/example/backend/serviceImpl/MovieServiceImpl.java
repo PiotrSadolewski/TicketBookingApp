@@ -42,6 +42,7 @@ public class MovieServiceImpl implements MovieService {
                 .sorted(Comparator.comparing(Movie::getTitle))
                 .map(movie -> MovieResponse.builder()
                     .title(movie.getTitle())
+                    .imageUrl(movie.getImageUrl())
                     .screenings(movie.getScreenings().stream()
                             .sorted(Comparator.comparing(Screening::getStartTime))
                             .map(screening -> MovieResponse.Screening.builder()

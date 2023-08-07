@@ -36,6 +36,8 @@ public class Movie{
     @NotNull
     private Duration duration;
 
+    private String imageUrl;
+
     @JsonBackReference
     @OneToMany(mappedBy = "movie")
     private List<Screening> screenings;

@@ -13,6 +13,7 @@ import java.util.List;
 public class MovieResponse {
     private String title;
     private List<Screening> screenings;
+    private String imageUrl;
 
     @Builder
     @AllArgsConstructor
