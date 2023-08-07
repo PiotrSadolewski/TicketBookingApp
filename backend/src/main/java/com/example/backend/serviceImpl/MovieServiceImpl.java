@@ -43,6 +43,8 @@ public class MovieServiceImpl implements MovieService {
                 .map(movie -> MovieResponse.builder()
                     .title(movie.getTitle())
                     .imageUrl(movie.getImageUrl())
+                    .genre(movie.getGenre())
+                    .duration(movie.getDuration().toMinutes())
                     .screenings(movie.getScreenings().stream()
                             .sorted(Comparator.comparing(Screening::getStartTime))
                             .map(screening -> MovieResponse.Screening.builder()

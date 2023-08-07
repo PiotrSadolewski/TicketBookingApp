@@ -15,6 +15,7 @@ public class ReservationController {
 
     private final ReservationService reservationService;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/add")
     public ResponseEntity<ReservationResponse> addReservation(@Valid @RequestBody ReservationRequest reservationRequest) {
         return ResponseEntity.ok(reservationService.addReservation(reservationRequest));

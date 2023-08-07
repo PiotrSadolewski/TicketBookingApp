@@ -2,6 +2,7 @@ package com.example.backend.model.response;
 
 import lombok.*;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,6 +15,8 @@ public class MovieResponse {
     private String title;
     private List<Screening> screenings;
     private String imageUrl;
+    private String genre;
+    private Long duration;
 
     @Builder
     @AllArgsConstructor

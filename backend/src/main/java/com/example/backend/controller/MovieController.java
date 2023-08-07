@@ -17,6 +17,8 @@ import java.util.List;
 public class MovieController {
 
     public final MovieService movieService;
+
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/all/byScreeningDate")
     public ResponseEntity<List<MovieResponse>> getAllMoviesAndScreeningsByScreeningDate(
             @RequestParam("screeningDate") @NotNull @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime screeningDate) {
