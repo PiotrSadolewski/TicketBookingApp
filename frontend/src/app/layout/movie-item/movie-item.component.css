@@ -1,0 +1,23 @@
+mat-button-toggle-group {
+    margin-left: 2px;
+}
+
+.example-card {
+    max-width: 80%;
+    margin-bottom: 20px;
+}
+  
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.image {
+    margin-left: 12px;
+}
+
+.flex-container {
+    display: flex;
+    align-items: flex-start;
+    margin: 10px; 
+}
