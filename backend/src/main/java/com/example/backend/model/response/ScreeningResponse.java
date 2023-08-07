@@ -22,5 +22,6 @@ public class ScreeningResponse {
         private Long id;
         private Integer row;
         private Integer seatNumber;
+        private boolean isReserved;
     }
 }

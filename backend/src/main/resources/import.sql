@@ -8,10 +8,10 @@ INSERT INTO Screening_Room (NUMBER, ROW_QUANTITY, SEATS_PER_ROW) VALUES (3, 5, 5
 
 INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-09-14 23:40:00', 2, 1);
 
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 1, 1);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 2, 1);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 3, 1);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 4, 1);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 1, 1, 1);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 1, 2, 1);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 1, 3, 1);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 1, 4, 1);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 5, 1);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 6, 1);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 7, 1);
@@ -23,18 +23,18 @@ INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FA
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 2, 5, 1);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 2, 6, 1);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 2, 7, 1);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 2, 8, 1);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 2, 8, 1);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 3, 1, 1);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 3, 2, 1);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 3, 2, 1);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 3, 3, 1);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 3, 4, 1);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 3, 4, 1);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 3, 5, 1);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 3, 6, 1);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 3, 7, 1);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 3, 7, 1);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 3, 8, 1);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 4, 1, 1);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 4, 2, 1);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 4, 3, 1);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 4, 1, 1);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 4, 2, 1);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 4, 3, 1);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 4, 4, 1);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 4, 5, 1);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 4, 6, 1);
@@ -176,11 +176,11 @@ INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FA
 
 INSERT INTO Screening (START_TIME, MOVIE_ID, SCREENING_ROOM_ID) VALUES ('2023-09-15 20:45:00', 2, 3);
 
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 1, 6);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 2, 6);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 3, 6);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 4, 6);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 1, 5, 6);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 1, 1, 6);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 1, 2, 6);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 1, 3, 6);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 1, 4, 6);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 1, 5, 6);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 2, 1, 6);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 2, 2, 6);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 2, 3, 6);
@@ -188,16 +188,16 @@ INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FA
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 2, 5, 6);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 3, 1, 6);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 3, 2, 6);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 3, 3, 6);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 3, 3, 6);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 3, 4, 6);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 3, 5, 6);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 3, 5, 6);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 4, 1, 6);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 4, 2, 6);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 4, 2, 6);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 4, 3, 6);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 4, 4, 6);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 4, 5, 6);
 INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 5, 1, 6);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 5, 2, 6);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 5, 3, 6);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 5, 4, 6);
-INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (FALSE, 5, 5, 6);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 5, 2, 6);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 5, 3, 6);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 5, 4, 6);
+INSERT INTO Seat (is_reserved, row_number, seat_number, screening_id) VALUES (TRUE, 5, 5, 6);

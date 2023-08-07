@@ -70,11 +70,11 @@ public class ScreeningServiceImpl implements ScreeningService {
         return ScreeningResponse.builder()
                 .screeningRoomNumber(screening.getScreeningRoom().getNumber())
                 .seats(screening.getSeats().stream()
-                        .filter(seat -> !seat.getIsReserved())
                         .map(seat -> ScreeningResponse.Seat.builder()
                                 .id(seat.getId())
                                 .row(seat.getRowNumber())
                                 .seatNumber(seat.getSeatNumber())
+                                .isReserved(seat.getIsReserved())
                                 .build())
                         .collect(Collectors.toList()))
                 .build();
