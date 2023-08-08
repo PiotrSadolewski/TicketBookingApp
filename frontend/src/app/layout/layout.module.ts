@@ -14,12 +14,15 @@ import { SeatListComponent } from './seat-list/seat-list.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { MatListModule } from '@angular/material/list';
 import { ScreeningComponent } from './screening/screening.component';
-import {FormBuilder, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 import { TicketComponent } from './ticket/ticket.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { ReservationComponent } from './reservation/reservation.component';
+import { MatDivider, MatDividerModule } from '@angular/material/divider';
+import { TicketReservationComponent } from './ticket-reservation/ticket-reservation.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,9 @@ import { MatChipsModule } from '@angular/material/chips';
     NavbarComponent,
     SeatListComponent,
     ScreeningComponent,
-    TicketComponent
+    TicketComponent,
+    ReservationComponent,
+    TicketReservationComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +51,8 @@ import { MatChipsModule } from '@angular/material/chips';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDividerModule
   ],
   exports: [
     NavbarComponent,

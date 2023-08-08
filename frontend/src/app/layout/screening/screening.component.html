@@ -1,9 +1,9 @@
 <h1>Create Reservation</h1>
 
 <mat-stepper #stepper>
-    <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
-      <form [formGroup]="firstFormGroup" class="form-container" (ngSubmit)="onFormSubmit()">
-        <ng-template matStepLabel>Fill out your name</ng-template>
+    <mat-step [stepControl]="personalDetailsForm" errorMessage="Name is required.">
+      <form [formGroup]="personalDetailsForm" class="form-container" (ngSubmit)="onFormSubmit()">
+        <ng-template matStepLabel>Fill out your Details</ng-template>
         <mat-form-field>
           <mat-label>Name</mat-label>
           <input matInput placeholder="First name" formControlName="name" required>
@@ -13,11 +13,11 @@
             <input matInput placeholder="Last name" formControlName="surname" required>
           </mat-form-field>
         <div>
-            <button mat-button [disabled]="!firstFormGroup.valid" (click)="stepper.next()">Next</button>
+            <button mat-button [disabled]="!personalDetailsForm.valid" (click)="stepper.next()">Next</button>
         </div>
       </form>
     </mat-step>
-    <mat-step >
+    <mat-step>
         <ng-template matStepLabel>Choose seats</ng-template>
         <div class="app-list-container" *ngIf="screening$ | async as screening">
             <app-seat-list 
@@ -26,6 +26,7 @@
             </app-seat-list>
         </div>
         <button mat-button matStepperNext (click)="createTickets()">Next</button>
+        <button mat-button matStepperPrevious>Back</button>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Set tickets type</ng-template>
@@ -36,10 +37,11 @@
         </app-ticket>
       </div>
       <div>
-        Total price: {{getTotalPrice() | currency:'PLN'}}
+        Total price: {{ getTotalPrice() | currency:'PLN' }}
       </div>
       <div>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button [disabled]="selectedSeats.length == 0" (click)="addReservation()">Submit</button>
+        <button mat-button matStepperPrevious (click)="deleteTickets()">Back</button>
       </div>
     </mat-step>
 </mat-stepper>

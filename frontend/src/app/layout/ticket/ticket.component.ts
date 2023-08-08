@@ -13,7 +13,7 @@ export class TicketComponent{
   @Input() ticketRequest: TicketRequest = {} as TicketRequest;
 
   setTicketType(ticketType: string) {
-    this.ticketRequest.TicketType = ticketType;
+    this.ticketRequest.ticketType = ticketType;
     console.log(this.ticketRequest);
   }
 }
