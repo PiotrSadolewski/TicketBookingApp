@@ -1,0 +1,21 @@
+.mat-card-container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+  
+.mat-card-container > div {
+    display: flex;
+    align-items: center; 
+}
+  
+.ticket-info {
+    flex-grow: 1;
+}
+  
+.chip-listbox-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 300px;
+}
+  

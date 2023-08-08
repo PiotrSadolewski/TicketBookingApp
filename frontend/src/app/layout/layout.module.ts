@@ -18,6 +18,8 @@ import {FormBuilder, Validators, FormsModule, ReactiveFormsModule} from '@angula
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
+import { TicketComponent } from './ticket/ticket.component';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MovieListComponent,
     NavbarComponent,
     SeatListComponent,
-    ScreeningComponent
+    ScreeningComponent,
+    TicketComponent
   ],
   imports: [
     CommonModule,
@@ -43,6 +46,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatChipsModule
   ],
   exports: [
     NavbarComponent,

@@ -14,8 +14,7 @@ export class MovieListComponent {
 
   constructor(
     private readonly movieService: MovieService,
-    private readonly router: Router
-    ) 
+    private readonly router: Router) 
     { 
     this.movies$ = this.movieService.getMovies();
   }

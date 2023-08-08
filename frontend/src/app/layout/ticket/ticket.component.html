@@ -1,0 +1,22 @@
+<mat-card class="mat-card-container">
+    <div>
+        <div class="ticket-info">
+            <mat-card-header>
+                <mat-card-title>Ticket</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-list role="list">
+                    <mat-list-item role="listitem">Row {{seat.row}}</mat-list-item>
+                    <mat-list-item role="listitem">Number {{seat.seatNumber}}</mat-list-item>
+                </mat-list>
+            </mat-card-content>
+        </div>
+        <div class="chip-listbox-container">
+            <mat-chip-listbox aria-label="Ticket type selection">
+                <mat-chip-option selected (click)="setTicketType('ADULT')">Adult</mat-chip-option>
+                <mat-chip-option (click)="setTicketType('CHILD')" color="accent">Child</mat-chip-option>
+                <mat-chip-option (click)="setTicketType('STUDENT')" color="warn">Student</mat-chip-option>
+            </mat-chip-listbox>
+        </div>
+    </div>
+</mat-card>

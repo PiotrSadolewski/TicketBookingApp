@@ -25,13 +25,20 @@
                 (selectedSeatsChange)="onSelectedSeatsChange($event)">
             </app-seat-list>
         </div>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext (click)="createTickets()">Next</button>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Set tickets type</ng-template>
-      <p>You are now done.</p>
+      <div *ngFor="let seat of selectedSeats">
+        <app-ticket 
+          [seat]="seat"
+          [ticketRequest]="getTicketBySeatId(seat.id)">
+        </app-ticket>
+      </div>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
+        Total price: {{getTotalPrice() | currency:'PLN'}}
+      </div>
+      <div>
         <button mat-button (click)="stepper.reset()">Reset</button>
       </div>
     </mat-step>
