@@ -1,5 +1,3 @@
-<h1>Select Seats</h1>
-
 <div class="description-container">
     <div>
         <button  mat-flat-button class="color-primary" disabled></button>
@@ -9,24 +7,32 @@
         <button mat-flat-button class="disabled"> </button>
         <span> seat reserved </span>
     </div>
+    <div>
+      <button mat-flat-button class="color-secondary"> </button>
+      <span> seat selected </span>
+  </div>
 </div>
 
-<div *ngIf="screening$ | async as screening; else loadingTemplate"> 
-    <ng-container *ngFor="let rowSeats of groupSeatsByRow(screening.seats)">
+<div> 
+    <ng-container *ngFor="let rowSeats of groupSeatsByRow(seats)">
       <div class="row">
         <p class="row-txt">Row {{ rowSeats[0].row }} </p>
         <div class="seats-container">
           <button 
             mat-flat-button 
-            [ngClass]="{ 'color-primary': !seat.reserved, 'disabled': seat.reserved }"
-            *ngFor="let seat of rowSeats">
+            [ngClass]="{ 
+              'disabled': seat.reserved,
+              'color-primary': !seat.reserved,
+              'color-secondary' : isSeatSelected(seat)
+               }"
+            *ngFor="let seat of rowSeats"
+            (click)="selectSeat(seat)">
             {{ seat.seatNumber }}
         </button>
         </div>
       </div>
     </ng-container>
 </div>
-  
 
   
 <ng-template #loadingTemplate>

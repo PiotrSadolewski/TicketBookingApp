@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MovieListComponent } from './layout/movie-list/movie-list.component';
-import { SeatListComponent } from './layout/seat-list/seat-list.component';
+import { ScreeningComponent } from './layout/screening/screening.component';
 
 const routes: Routes = [
   {
@@ -10,7 +10,7 @@ const routes: Routes = [
   }, 
   {
     path: 'screening/:id',
-    component: SeatListComponent
+    component: ScreeningComponent
   }
 ];
 

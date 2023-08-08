@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { ScreeningResponse, Seat } from 'src/app/models/screening_resoponse';
-import { ScreeningService } from 'src/app/services/screening.service';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
+import { Seat } from 'src/app/models/screening_resoponse';
 
 
 @Component({
@@ -10,24 +7,11 @@ import { ScreeningService } from 'src/app/services/screening.service';
   templateUrl: './seat-list.component.html',
   styleUrls: ['./seat-list.component.css']
 })
-export class SeatListComponent implements OnInit {
-  screening$: Observable<ScreeningResponse>;
-  screeningId: number | null = null;
+export class SeatListComponent {
+  @Input() seats: Seat[] = [];
+  @Output() selectedSeatsChange: EventEmitter<any[]> = new EventEmitter<any[]>();
 
-  constructor(
-    private route: ActivatedRoute,
-    private screeningService: ScreeningService
-    ) {
-      this.ngOnInit();
-      this.screening$ = this.screeningService.getScreeningById(this.screeningId || 0);
-    }
-
-
-  ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.screeningId = parseInt(params.get('id') || '0');
-    });
-  }
+  selectedSeats: any[] = [];
 
   groupSeatsByRow(seats: Seat[]): Seat[][] {
     const groupedSeats: Seat[][] = [];
@@ -38,4 +22,20 @@ export class SeatListComponent implements OnInit {
     });
     return groupedSeats;
   }
+
+  selectSeat(seat: any) {
+    const index = this.selectedSeats.findIndex((selectedSeat) => selectedSeat.id === seat.id);
+    if (index !== -1) {
+      this.selectedSeats.splice(index, 1);
+    } else {
+      this.selectedSeats.push(seat);
+    }
+    this.selectedSeatsChange.emit(this.selectedSeats);
+  }
+
+  isSeatSelected(seat: any) {
+    return this.selectedSeats.some((selectedSeat) => selectedSeat.id === seat.id);
+  }
+  
+  
 }

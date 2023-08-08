@@ -1,3 +1,4 @@
 <div *ngFor="let movie of movies$ | async">
     <app-movie-item [movie]="movie" (screeningSelected)="onScreeningSelected($event)"></app-movie-item>
 </div>
+

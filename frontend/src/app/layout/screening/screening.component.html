@@ -1,0 +1,38 @@
+<h1>Create Reservation</h1>
+
+<mat-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
+      <form [formGroup]="firstFormGroup" class="form-container" (ngSubmit)="onFormSubmit()">
+        <ng-template matStepLabel>Fill out your name</ng-template>
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="First name" formControlName="name" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Surname</mat-label>
+            <input matInput placeholder="Last name" formControlName="surname" required>
+          </mat-form-field>
+        <div>
+            <button mat-button [disabled]="!firstFormGroup.valid" (click)="stepper.next()">Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step >
+        <ng-template matStepLabel>Choose seats</ng-template>
+        <div class="app-list-container" *ngIf="screening$ | async as screening">
+            <app-seat-list 
+                [seats]="screening.seats"
+                (selectedSeatsChange)="onSelectedSeatsChange($event)">
+            </app-seat-list>
+        </div>
+        <button mat-button matStepperNext>Next</button>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Set tickets type</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+</mat-stepper>

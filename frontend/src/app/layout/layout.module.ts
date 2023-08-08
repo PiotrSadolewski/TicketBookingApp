@@ -12,14 +12,20 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { SeatListComponent } from './seat-list/seat-list.component';
 import { AppRoutingModule } from '../app-routing.module';
-import { MatList, MatListModule } from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
+import { ScreeningComponent } from './screening/screening.component';
+import {FormBuilder, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
     MovieItemComponent,
     MovieListComponent,
     NavbarComponent,
-    SeatListComponent
+    SeatListComponent,
+    ScreeningComponent
   ],
   imports: [
     CommonModule,
@@ -31,13 +37,15 @@ import { MatList, MatListModule } from '@angular/material/list';
     MatToolbarModule,
     MatIconModule,
     AppRoutingModule,
-    MatListModule
+    MatListModule,
+    MatStepperModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   exports: [
-    MovieItemComponent,
-    MovieListComponent,
     NavbarComponent,
-    SeatListComponent
   ]
 })
 export class LayoutModule { }
