@@ -116,4 +116,8 @@ export class ScreeningComponent implements OnInit {
         }
       );
   }
+
+  checkIfSeatIsSelected() {
+    return this.selectedSeats.length > 0;
+  }
 }

@@ -23,6 +23,9 @@ import { MatChipsModule } from '@angular/material/chips';
 import { ReservationComponent } from './reservation/reservation.component';
 import { MatDivider, MatDividerModule } from '@angular/material/divider';
 import { TicketReservationComponent } from './ticket-reservation/ticket-reservation.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';;
+import {MatNativeDateModule} from '@angular/material/core';
+
 
 @NgModule({
   declarations: [
@@ -52,7 +55,9 @@ import { TicketReservationComponent } from './ticket-reservation/ticket-reservat
     MatFormFieldModule,
     MatInputModule,
     MatChipsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     NavbarComponent,

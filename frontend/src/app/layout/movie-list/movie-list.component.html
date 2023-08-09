@@ -1,4 +1,12 @@
-<div *ngFor="let movie of movies$ | async">
-    <app-movie-item [movie]="movie" (screeningSelected)="onScreeningSelected($event)"></app-movie-item>
+<div class="container">
+    <div class="calendar-container">
+        <mat-card class="calendar-card">
+            <mat-calendar [(selected)]="formattedDate" (selectedChange)="onDateSelected($event)"></mat-calendar>
+        </mat-card>
+    </div>
+    <div class="movies-container">
+        <div *ngFor="let movie of movies$ | async">
+            <app-movie-item [movie]="movie" (screeningSelected)="onScreeningSelected($event)"></app-movie-item>
+        </div>
+    </div>
 </div>
-

@@ -1,47 +1,55 @@
 <h1>Create Reservation</h1>
 
-<mat-stepper #stepper>
-    <mat-step [stepControl]="personalDetailsForm" errorMessage="Name is required.">
-      <form [formGroup]="personalDetailsForm" class="form-container" (ngSubmit)="onFormSubmit()">
-        <ng-template matStepLabel>Fill out your Details</ng-template>
-        <mat-form-field>
-          <mat-label>Name</mat-label>
-          <input matInput placeholder="First name" formControlName="name" required>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Surname</mat-label>
-            <input matInput placeholder="Last name" formControlName="surname" required>
+<div class="app-container">
+
+  <mat-stepper #stepper>
+      <mat-step [stepControl]="personalDetailsForm" errorMessage="Name is required.">
+        <form [formGroup]="personalDetailsForm" class="form-container" (ngSubmit)="onFormSubmit()">
+          <ng-template matStepLabel>Fill out your Details</ng-template>
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="First name" formControlName="name" required>
           </mat-form-field>
+          <mat-form-field>
+              <mat-label>Surname</mat-label>
+              <input matInput placeholder="Last name" formControlName="surname" required>
+            </mat-form-field>
+          <div>
+              <button mat-button [disabled]="!personalDetailsForm.valid" (click)="stepper.next()">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+          <ng-template matStepLabel>Choose seats</ng-template>
+          <div class="app-list-container" *ngIf="screening$ | async as screening">
+              <app-seat-list 
+                  [seats]="screening.seats"
+                  (selectedSeatsChange)="onSelectedSeatsChange($event)">
+              </app-seat-list>
+          </div>
+          <button mat-button [disabled]="!checkIfSeatIsSelected()" matStepperNext (click)="createTickets()">Next</button>
+          <button mat-button matStepperPrevious>Back</button>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Set tickets type</ng-template>
+        <div class="ticket-description">
+          <mat-chip-option selected> Adult 18 PLN</mat-chip-option>
+          <mat-chip-option selected color="accent">Child 12.50 PLN</mat-chip-option>
+          <mat-chip-option selected  color="warn">Student 18 PLN</mat-chip-option>
+        </div>
+        <div *ngFor="let seat of selectedSeats">
+          <app-ticket 
+            [seat]="seat"
+            [ticketRequest]="getTicketBySeatId(seat.id)">
+          </app-ticket>
+        </div>
+        <mat-card class="total-price">
+          <mat-card-content>Total price: {{ getTotalPrice() | currency:'PLN' }}</mat-card-content>
+        </mat-card>
         <div>
-            <button mat-button [disabled]="!personalDetailsForm.valid" (click)="stepper.next()">Next</button>
+          <button mat-button [disabled]="!checkIfSeatIsSelected()" (click)="addReservation()">Submit</button>
+          <button mat-button matStepperPrevious (click)="deleteTickets()">Back</button>
         </div>
-      </form>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Choose seats</ng-template>
-        <div class="app-list-container" *ngIf="screening$ | async as screening">
-            <app-seat-list 
-                [seats]="screening.seats"
-                (selectedSeatsChange)="onSelectedSeatsChange($event)">
-            </app-seat-list>
-        </div>
-        <button mat-button matStepperNext (click)="createTickets()">Next</button>
-        <button mat-button matStepperPrevious>Back</button>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Set tickets type</ng-template>
-      <div *ngFor="let seat of selectedSeats">
-        <app-ticket 
-          [seat]="seat"
-          [ticketRequest]="getTicketBySeatId(seat.id)">
-        </app-ticket>
-      </div>
-      <div>
-        Total price: {{ getTotalPrice() | currency:'PLN' }}
-      </div>
-      <div>
-        <button mat-button [disabled]="selectedSeats.length == 0" (click)="addReservation()">Submit</button>
-        <button mat-button matStepperPrevious (click)="deleteTickets()">Back</button>
-      </div>
-    </mat-step>
-</mat-stepper>
+      </mat-step>
+  </mat-stepper>
+</div>

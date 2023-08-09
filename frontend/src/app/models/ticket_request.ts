@@ -1,4 +1,4 @@
 export interface TicketRequest {
-    TicketType: string;
-    SeatId: number;
+    ticketType: string;
+    seatId: number;
 }
