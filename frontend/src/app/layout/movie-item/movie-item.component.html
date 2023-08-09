@@ -12,7 +12,8 @@
 
       <mat-card-actions>
           <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-              <mat-button-toggle *ngFor="let screening of movie.screenings" (click)="onScreeningSelected(screening.screeningId)">
+              <mat-button-toggle *ngFor="let screening of movie.screenings" 
+                (click)="onScreeningSelected(movie.title, screening.screeningId, screening.startTime)">
                 {{ screening.startTime | date: 'h:mm' }}
               </mat-button-toggle>
             </mat-button-toggle-group>

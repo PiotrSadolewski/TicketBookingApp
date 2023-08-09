@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MovieResponse } from 'src/app/models/movie_response';
+import { MovieService } from 'src/app/services/movie.service';
 
 
 @Component({
@@ -9,9 +10,9 @@ import { MovieResponse } from 'src/app/models/movie_response';
 })
 export class MovieItemComponent {
   @Input() movie: MovieResponse | undefined;
-  @Output() screeningSelected: EventEmitter<number> = new EventEmitter<number>();
+  @Output() screeningSelected: EventEmitter<[string, number, string]> = new EventEmitter<[string, number, string]>();
 
-  onScreeningSelected(screeningId: number) {
-    this.screeningSelected.emit(screeningId);
+  onScreeningSelected(movieTitle: string, screeningId: number, date: string) {
+    this.screeningSelected.emit([movieTitle, screeningId, date]);
   }
 }

@@ -8,4 +8,5 @@ import { TicketResponse } from 'src/app/models/reservation_response';
 })
 export class TicketReservationComponent {
   @Input () ticket: TicketResponse = {} as TicketResponse;
+  panelOpenState = false;
 }

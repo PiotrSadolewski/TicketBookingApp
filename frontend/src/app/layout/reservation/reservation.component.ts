@@ -18,4 +18,8 @@ export class ReservationComponent implements OnInit{
     this.reservation = history.state.reservationResponse;
   }
 
+  onBackSelected() {
+    this.router.navigate([``]);
+  }
+
 }

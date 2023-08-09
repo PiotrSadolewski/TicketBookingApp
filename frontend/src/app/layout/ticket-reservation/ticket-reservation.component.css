@@ -1,41 +1,10 @@
-.mat-card-container {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    background-color: whitesmoke;
-}
-  
-.mat-card-container > div {
-    display: flex;
-    align-items: center; 
-}
-  
-.ticket-info {
-    flex-grow: 1;
-}
-  
-.ticketTypeContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-right: 300px;
-}
-
-
-.mat-chip-option-ticket{
-    width: 120px;
-    pointer-events: none;
-}
-
 .p-info{
     margin-top: 10px;
 }
 
-.div-info{
-    margin-top: 10px;
-}
-
 .ticket-Type{
-    font-size: 20px;
+    margin-top: 10px;
+    font-size: 16px;
 }
 
 .adult-color{
@@ -52,4 +21,9 @@
 
 .child-color{
     color: #ff4081;
+}
+
+.ticket-container mat-expansion-panel {
+    margin-bottom: 10px; 
+    margin-top: 10px;
 }

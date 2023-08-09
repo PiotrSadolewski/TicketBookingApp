@@ -1,25 +1,18 @@
-<mat-card class="mat-card-container">
-  <div>
-      <div class="ticket-info">
-          <mat-card-header>
-              <mat-card-subtitle>Ticket</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-              <div class="div-info">
-                  <p>Row {{ticket.row}}</p>
-                  <mat-divider></mat-divider>
-                  <p class="p-info">Number {{ticket.seatNumber}}<p>
-              </div>
-          </mat-card-content>
-      </div>
-      <div class="ticketTypeContainer">
+<mat-accordion class="ticket-container">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
         <p class="ticket-Type"
         [ngClass]="{
           'adult-color': ticket.ticketType === 'ADULT',
           'child-color': ticket.ticketType === 'CHILD',
           'student-color': ticket.ticketType === 'STUDENT'
         }">
-          {{ticket.ticketType}}</p>
-      </div>
-  </div>
-</mat-card>
+          Ticket {{ticket.ticketType}}</p>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+      <p>Row {{ticket.row}}</p>
+      <mat-divider></mat-divider>
+      <p class="p-info">Number {{ticket.seatNumber}} <p>
+  </mat-expansion-panel>
+</mat-accordion>

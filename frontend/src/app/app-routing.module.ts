@@ -10,7 +10,7 @@ const routes: Routes = [
     component : MovieListComponent
   }, 
   {
-    path: 'screening/:id',
+    path: 'screening/:id/:movieTitle/:date',
     component: ScreeningComponent
   },
   {

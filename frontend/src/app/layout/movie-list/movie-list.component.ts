@@ -14,13 +14,14 @@ import { MovieService } from 'src/app/services/movie.service';
   providers: [DatePipe]
 })
 export class MovieListComponent {
-  movies$: Observable<MovieResponse[]>;
+  movies$: Observable<MovieResponse[]> | undefined;
   formattedDate: string | null = null;
 
   @ViewChild(MatCalendar) calendar: MatCalendar<Date> | undefined;
 
   onDateSelected(event: any) {
     this.formatDate(event);
+    this.movies$ = this.movieService.getMovies(this.formattedDate!);
   }
 
   constructor(
@@ -28,15 +29,18 @@ export class MovieListComponent {
     private readonly router: Router,
     private datePipe: DatePipe) 
     {
-    this.formatDate(this.setCurrentDate());
-    this.movies$ = this.movieService.getMovies();
+      this.formatDate(this.setCurrentDate());
+      this.movies$ = this.movieService.getMovies(this.formattedDate!);
+      console.log(this.movies$)
   }
 
-  onScreeningSelected(screeningId: number) {
-    this.router.navigate(['/screening', screeningId]);
+  onScreeningSelected(movieTitle: string, screeningId: number, date: string) {
+    this.router.navigate([`/screening/${screeningId}/${movieTitle}/${date}`]);
   }
 
   formatDate(date: Date){
+    date.setMinutes(date.getMinutes() + 1);
+    console.log(date.getMinutes());
     this.formattedDate = this.datePipe.transform(date, 'yyyy-MM-ddTHH:mm:ss');
     console.log(this.formattedDate);
   }

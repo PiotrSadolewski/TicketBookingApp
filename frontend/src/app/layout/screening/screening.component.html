@@ -1,4 +1,8 @@
-<h1>Create Reservation</h1>
+<div class="movie-details">
+  <h1>Create Reservation</h1>
+  <p class="movie-title">{{ movieTitle }}</p>
+  <p class="screening-date">{{ date | date:'yyyy-MM-dd HH:mm' }}</p>
+</div>
 
 <div class="app-container">
 
@@ -15,7 +19,7 @@
               <input matInput placeholder="Last name" formControlName="surname" required>
             </mat-form-field>
           <div>
-              <button mat-button [disabled]="!personalDetailsForm.valid" (click)="stepper.next()">Next</button>
+              <button mat-button color="primary" [disabled]="!personalDetailsForm.valid" (click)="stepper.next()">Next</button>
           </div>
         </form>
       </mat-step>
@@ -27,15 +31,15 @@
                   (selectedSeatsChange)="onSelectedSeatsChange($event)">
               </app-seat-list>
           </div>
-          <button mat-button [disabled]="!checkIfSeatIsSelected()" matStepperNext (click)="createTickets()">Next</button>
-          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button color="primary" [disabled]="!checkIfSeatIsSelected()" matStepperNext (click)="createTickets()">Next</button>
+          <button mat-button color="warn" matStepperPrevious>Back</button>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Set tickets type</ng-template>
         <div class="ticket-description">
-          <mat-chip-option selected> Adult 18 PLN</mat-chip-option>
-          <mat-chip-option selected color="accent">Child 12.50 PLN</mat-chip-option>
-          <mat-chip-option selected  color="warn">Student 18 PLN</mat-chip-option>
+          <mat-chip-option selected> Adult 25 PLN</mat-chip-option>
+          <mat-chip-option selected color="accent">Child 18 PLN</mat-chip-option>
+          <mat-chip-option selected  color="warn">Student 12.50 PLN</mat-chip-option>
         </div>
         <div *ngFor="let seat of selectedSeats">
           <app-ticket 
@@ -47,8 +51,8 @@
           <mat-card-content>Total price: {{ getTotalPrice() | currency:'PLN' }}</mat-card-content>
         </mat-card>
         <div>
-          <button mat-button [disabled]="!checkIfSeatIsSelected()" (click)="addReservation()">Submit</button>
-          <button mat-button matStepperPrevious (click)="deleteTickets()">Back</button>
+          <button mat-button color="primary" [disabled]="!checkIfSeatIsSelected()" (click)="addReservation()">Submit</button>
+          <button mat-button color="warn" matStepperPrevious (click)="deleteTickets();">Back</button>
         </div>
       </mat-step>
   </mat-stepper>

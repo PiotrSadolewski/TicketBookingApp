@@ -10,14 +10,14 @@ import { environment } from 'src/environments/environment';
 
 export class MovieService {
 
-    constructor(private readonly http: HttpClient) { }
+    constructor(private readonly http: HttpClient) {
+        
+     }
 
     movieSubject$ = new BehaviorSubject<MovieResponse[]>([]);
-    getMovies(): Observable<MovieResponse[]> {
+    getMovies(date: String): Observable<MovieResponse[]> {
         return this.movieSubject$.pipe(
-            switchMap(() => this.http.get<MovieResponse[]>(`http://localhost:8080/api/movies/all/byScreeningDate?screeningDate=2023-09-14T09:40:00`))
+            switchMap(() => this.http.get<MovieResponse[]>(`http://localhost:8080/api/movies/all/byScreeningDate?screeningDate=${date}`))
         );
     } 
-
-
 }

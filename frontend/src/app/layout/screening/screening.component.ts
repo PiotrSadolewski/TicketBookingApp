@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ScreeningResponse, Seat } from 'src/app/models/screening_resoponse';
@@ -7,22 +7,19 @@ import { TicketRequest } from 'src/app/models/ticket_request';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { ScreeningService } from 'src/app/services/screening.service';
 import { ReservationResponse } from 'src/app/models/reservation_response';
-import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
   selector: 'app-screening',
   templateUrl: './screening.component.html',
-  styleUrls: ['./screening.component.css'],
-  providers: [
-    {
-      provide: STEPPER_GLOBAL_OPTIONS,
-      useValue: {showError: true},
-    },
-  ],
+  styleUrls: ['./screening.component.css']
 })
+
 export class ScreeningComponent implements OnInit {
   screening$: Observable<ScreeningResponse>;
   screeningId: number | null = null;
+  movieTitle: string | null = null;
+  date: string | null = null;
   selectedSeats: Seat[] = [];
   ticketRequests: TicketRequest[] = [];
 
@@ -31,7 +28,7 @@ export class ScreeningComponent implements OnInit {
     private screeningService: ScreeningService,
     private formBuilder: FormBuilder,
     private reservationService: ReservationService,
-    private router: Router
+    private router: Router,
     ) {
       this.ngOnInit();
       this.screening$ = this.screeningService.getScreeningById(this.screeningId || 0);
@@ -39,7 +36,9 @@ export class ScreeningComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.screeningId = parseInt(params.get('id') || '0');
+      this.screeningId = parseInt(params.get('id') || '0'),
+      this.movieTitle = params.get('movieTitle'),
+      this.date = params.get('date');
     });
   }
 
@@ -101,6 +100,7 @@ export class ScreeningComponent implements OnInit {
     };
   }
 
+  // promiste take fist value 
   addReservation() {
     this.reservationService.addReservation(this.createReservationRequest())
       .subscribe(

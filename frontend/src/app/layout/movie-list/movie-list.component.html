@@ -4,9 +4,16 @@
             <mat-calendar [(selected)]="formattedDate" (selectedChange)="onDateSelected($event)"></mat-calendar>
         </mat-card>
     </div>
-    <div class="movies-container">
+
+    <div *ngIf="(movies$ | async)?.length !== 0; else noMovies; else noMovies" class="movies-container">
         <div *ngFor="let movie of movies$ | async">
-            <app-movie-item [movie]="movie" (screeningSelected)="onScreeningSelected($event)"></app-movie-item>
+            <app-movie-item [movie]="movie" (screeningSelected)="onScreeningSelected($event[0], $event[1], $event[2])"></app-movie-item>
         </div>
     </div>
+
+    <ng-template #noMovies>
+        <div class="movies-container">
+            <h1>No movies available for selected Date</h1>
+        </div>
+    </ng-template>
 </div>
