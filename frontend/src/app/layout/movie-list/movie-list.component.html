@@ -7,7 +7,10 @@
 
     <div *ngIf="(movies$ | async)?.length !== 0; else noMovies; else noMovies" class="movies-container">
         <div *ngFor="let movie of movies$ | async">
-            <app-movie-item [movie]="movie" (screeningSelected)="onScreeningSelected($event[0], $event[1], $event[2])"></app-movie-item>
+            <app-movie-item [movie]="movie" 
+                (screeningSelected)="onScreeningSelected($event[0], $event[1], $event[2])"
+                (movieDetailsSelected)="onMovieDetailsSelected($event)"
+            />
         </div>
     </div>
 

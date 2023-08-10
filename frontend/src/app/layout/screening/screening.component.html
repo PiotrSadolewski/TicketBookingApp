@@ -19,7 +19,8 @@
               <input matInput placeholder="Last name" formControlName="surname" required>
             </mat-form-field>
           <div>
-              <button mat-button color="primary" [disabled]="!personalDetailsForm.valid" (click)="stepper.next()">Next</button>
+              <button mat-raised-button color="primary" [disabled]="!personalDetailsForm.valid" (click)="stepper.next()">Next</button>
+              <button class="button-right" mat-raised-button color="warn" (click)="cancelReservation()"> Cancel </button>
           </div>
         </form>
       </mat-step>
@@ -31,8 +32,8 @@
                   (selectedSeatsChange)="onSelectedSeatsChange($event)">
               </app-seat-list>
           </div>
-          <button mat-button color="primary" [disabled]="!checkIfSeatIsSelected()" matStepperNext (click)="createTickets()">Next</button>
-          <button mat-button color="warn" matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" [disabled]="!checkIfSeatIsSelected()" matStepperNext (click)="createTickets()">Next</button>
+          <button class="button-right" mat-raised-button color="warn" matStepperPrevious>Back</button>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Set tickets type</ng-template>
@@ -51,8 +52,8 @@
           <mat-card-content>Total price: {{ getTotalPrice() | currency:'PLN' }}</mat-card-content>
         </mat-card>
         <div>
-          <button mat-button color="primary" [disabled]="!checkIfSeatIsSelected()" (click)="addReservation()">Submit</button>
-          <button mat-button color="warn" matStepperPrevious (click)="deleteTickets();">Back</button>
+          <button mat-raised-button color="primary" [disabled]="!checkIfSeatIsSelected()" (click)="addReservation()">Submit</button>
+          <button mat-raised-button class="button-right" color="warn" matStepperPrevious (click)="deleteTickets();">Back</button>
         </div>
       </mat-step>
   </mat-stepper>

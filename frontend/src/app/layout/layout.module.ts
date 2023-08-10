@@ -27,6 +27,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ScreeningComponent,
     TicketComponent,
     ReservationComponent,
-    TicketReservationComponent
+    TicketReservationComponent,
+    MovieDetailsComponent
   ],
   imports: [
     CommonModule,

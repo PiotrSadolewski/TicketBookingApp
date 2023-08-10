@@ -120,4 +120,8 @@ export class ScreeningComponent implements OnInit {
   checkIfSeatIsSelected() {
     return this.selectedSeats.length > 0;
   }
+
+  cancelReservation() {
+    this.router.navigate(['/']);
+  }
 }

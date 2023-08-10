@@ -38,6 +38,10 @@ export class MovieListComponent {
     this.router.navigate([`/screening/${screeningId}/${movieTitle}/${date}`]);
   }
 
+  onMovieDetailsSelected(movieId: number) {
+    this.router.navigate([`/movie/details/${movieId}`]);
+  }
+
   formatDate(date: Date){
     date.setMinutes(date.getMinutes() + 1);
     console.log(date.getMinutes());

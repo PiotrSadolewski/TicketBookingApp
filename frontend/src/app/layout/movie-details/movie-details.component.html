@@ -1,0 +1,29 @@
+<div *ngIf="(movie$ | async) as movie" class="movie-details">
+    <div class="movie-poster">
+      <img [src]="movie.imageUrl" alt="Movie Poster">
+
+        <div>
+            <button mat-raised-button color="accent" class="back-button" (click)="goBack()">Back</button>
+        </div>
+    </div>
+    <div class="movie-info">
+        <h1>{{ movie.title }}</h1>
+        <mat-list class="list-container">
+        <mat-list-item class="item-container">
+            <div class="label"><strong>Director:</strong></div>
+            <div class="value">{{ movie.filmDirector }}</div>
+        </mat-list-item>
+        <mat-list-item class="item-container">
+            <div class="label"><strong>Genre:</strong></div>
+            <div class="value">{{ movie.genre }}</div>
+        </mat-list-item>
+        <mat-list-item class="item-container">
+            <div class="label"><strong>Duration:</strong></div>
+            <div class="value">{{ getDurationInMinutes(movie.duration) }} Minutes</div>
+        </mat-list-item>
+        </mat-list>
+        <mat-divider></mat-divider>
+        <p class="description">{{ movie.description }}</p>
+    </div>
+</div>
+  
