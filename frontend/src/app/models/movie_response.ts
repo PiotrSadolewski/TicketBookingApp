@@ -1,4 +1,5 @@
 export interface MovieResponse {
+    id: number;
     title: string;
     screenings: Screening[];
     imageUrl: string;
