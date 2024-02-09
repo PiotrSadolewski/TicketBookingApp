@@ -33,5 +33,4 @@ public class TicketServiceImpl implements TicketService {
         return ticketRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Ticket with ID: " + id + "not found"));
     }
-
 }
